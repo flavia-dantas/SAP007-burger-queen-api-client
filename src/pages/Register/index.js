@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../../components/Button/button";
-import { InputElement } from "../../components/Input/input";
+import { Button } from "../../components/Button";
+import { InputElement } from "../../components/Input";
 
 export const Register = () => {
   const [name, setName] = useState("");
