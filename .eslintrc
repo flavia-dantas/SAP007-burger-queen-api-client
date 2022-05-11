@@ -21,6 +21,6 @@
     ],
     "semi": ["warn", "always"],
     "quotes": ["warn", "double"],
-    "react/prop-types": ["enabled", 0]
+    "react/prop-types": 0
   }
 }
