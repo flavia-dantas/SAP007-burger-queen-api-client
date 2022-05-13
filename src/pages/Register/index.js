@@ -60,16 +60,18 @@ export const Register = () => {
         <InputElement
           type="radio"
           className="input-radio"
-          value={role}
-          name="input-role"
+          value="saloon"
+          name="role"
+          checked={role === "saloon"}
           onChange={(e) => setRole(e.target.value)}
         ></InputElement>
         <label>Atendente</label>
         <InputElement
           type="radio"
           className="input-radio"
-          value={role}
-          name="input-role"
+          value="kitchen"
+          name="role"
+          checked={role === "kitchen"}
           onChange={(e) => setRole(e.target.value)}
         ></InputElement>
         <label>Cozinha</label>
