@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
 import { createUser } from "../../services/auth";
+import { errorMessage } from "../../services/error";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,7 @@ export const Register = () => {
           navigate("/");
           return response.json();
         }
+        errorMessage(response);
       })
       .then(data => {
         console.log(data);
