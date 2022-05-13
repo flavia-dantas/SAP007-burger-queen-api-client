@@ -9,7 +9,13 @@ export const createUser = async (name, email, password, role) => {
       email: email,
       password: password,
       role: role,
-      restaurant: "Burguer Queen"
-    })
+export const loginUser = (email, password) => {
+  return fetch(`${BASE_URL}/auth`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   });
 };
