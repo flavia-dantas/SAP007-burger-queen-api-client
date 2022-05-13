@@ -11,19 +11,21 @@ export const Login = () => {
       <InputElement
         type="email"
         className="input"
+        label="E-mail"
         value={email}
         name="input"
         placeholder="user@user.com"
         onChange={(e) => setEmail(e.target.value)}
-      ></InputElement>
+      />
       <InputElement
         type="password"
         className="input"
+        label="Senha"
         value={password}
         name="input"
         placeholder="******"
         onChange={(e) => setPassword(e.target.value)}
-      ></InputElement>
+      />
       <Button className="button">Entrar</Button>
 
       <p className="text-center">

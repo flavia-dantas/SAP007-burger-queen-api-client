@@ -36,44 +36,48 @@ export const Register = () => {
         <InputElement
           type="text"
           className="input"
+          label="Nome"
           value={name}
           name="input"
           placeholder="Digite o seu nome completo"
           onChange={(e) => setName(e.target.value)}
-        ></InputElement>
+        />
         <InputElement
           type="email"
           className="input"
+          label="E-mail"
           value={email}
           name="input"
           placeholder="user@user.com"
           onChange={(e) => setEmail(e.target.value)}
-        ></InputElement>
+        />
         <InputElement
           type="password"
           className="input"
+          label="Senha"
           value={password}
           name="input"
           placeholder="******"
           onChange={(e) => setPassword(e.target.value)}
-        ></InputElement>
+        />
         <InputElement
           type="radio"
           className="input-radio"
+          label="Atendente"
           value="saloon"
           name="role"
           checked={role === "saloon"}
           onChange={(e) => setRole(e.target.value)}
-        ></InputElement>
-        <label>Atendente</label>
+        />
         <InputElement
           type="radio"
           className="input-radio"
+          label="Cozinha"
           value="kitchen"
           name="role"
           checked={role === "kitchen"}
           onChange={(e) => setRole(e.target.value)}
-        ></InputElement>
+        />
         <label>Cozinha</label>
         <Button className="button" onClick={handleSubmit}>Cadastrar</Button>
       </form>
