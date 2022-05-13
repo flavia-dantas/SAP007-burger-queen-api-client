@@ -1,13 +1,33 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
+import { createUser } from "../../services/auth";
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("saloon");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUser(name, email, password, role)
+      .then((response) => {
+        if (response.status === 200) {
+          navigate("/");
+          return response.json();
+        }
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <form>
@@ -38,20 +58,22 @@ export const Register = () => {
         <InputElement
           type="radio"
           className="input-radio"
-          value={role}
-          name="input-role"
+          value="saloon"
+          name="role"
+          checked={role === "saloon"}
           onChange={(e) => setRole(e.target.value)}
         ></InputElement>
         <label>Atendente</label>
         <InputElement
           type="radio"
           className="input-radio"
-          value={role}
-          name="input-role"
+          value="kitchen"
+          name="role"
+          checked={role === "kitchen"}
           onChange={(e) => setRole(e.target.value)}
         ></InputElement>
         <label>Cozinha</label>
-        <Button className="button">Cadastrar</Button>
+        <Button className="button" onClick={handleSubmit}>Cadastrar</Button>
       </form>
       <p className="text-center">
         <span className="text-span">Já possui conta?</span>
