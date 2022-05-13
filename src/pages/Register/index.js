@@ -17,15 +17,15 @@ export const Register = () => {
     createUser(name, email, password, role)
       .then((response) => {
         if (response.status === 200) {
-          navigate("/");
           return response.json();
         }
         errorMessage(response);
       })
-      .then(data => {
-        console.log(data);
+      .then((data) => {
+        console.log(data.token);
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
