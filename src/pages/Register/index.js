@@ -2,14 +2,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
+import { MessageStatusCode } from "../../components/MessageStatusCode";
 import { createUser } from "../../services/auth";
-import { errorMessage } from "../../services/error";
+import { statusCode } from "../../services/error";
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("saloon");
+  const [errorMessage, setErrorMessage] = useState(true);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -20,7 +22,8 @@ export const Register = () => {
           navigate("/");
           return response.json();
         }
-        errorMessage(response);
+        statusCode(response);
+        setErrorMessage(false);
       })
       .then(data => {
         console.log(data);
@@ -74,7 +77,7 @@ export const Register = () => {
           checked={role === "kitchen"}
           onChange={(e) => setRole(e.target.value)}
         ></InputElement>
-        <label>Cozinha</label>
+        <MessageStatusCode disable={errorMessage} />
         <Button className="button" onClick={handleSubmit}>Cadastrar</Button>
       </form>
       <p className="text-center">

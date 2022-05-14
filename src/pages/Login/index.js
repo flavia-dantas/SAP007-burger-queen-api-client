@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
+import { statusCode } from "../../services/error";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+        statusCode();
   return (
     <>
       <InputElement
