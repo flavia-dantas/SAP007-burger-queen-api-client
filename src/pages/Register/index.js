@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
 import { createUser } from "../../services/auth";
-import { errorMessage } from "../../services/error";
+import { setToken } from "../../services/localStorage";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -23,6 +23,7 @@ export const Register = () => {
       })
       .then((data) => {
         console.log(data.token);
+        setToken(data.token);
         navigate("/");
       })
       .catch((error) => {

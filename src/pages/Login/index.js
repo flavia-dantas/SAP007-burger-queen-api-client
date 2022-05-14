@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
+import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 
 export const Login = () => {
@@ -19,13 +20,14 @@ export const Login = () => {
       })
       .then((data) => {
         console.log(data.token);
+        setToken(data.token);
         navigate("/register");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  
   return (
     <>
       <InputElement
