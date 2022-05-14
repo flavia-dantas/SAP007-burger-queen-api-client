@@ -6,19 +6,24 @@ export const InputElement = ({
   name,
   placeholder,
   onChange,
+  label,
+  classNameLabel,
   ...props
 }) => {
   return (
     <>
-      <input
-        type={type}
-        className={className}
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChange}
-        {...props}
-      ></input>
+      <div>
+        <label className={classNameLabel}>{label}</label>
+        <input
+          type={type}
+          className={className}
+          value={value}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          {...props}
+        />
+      </div>
     </>
   );
 };
