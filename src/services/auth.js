@@ -13,5 +13,14 @@ export const createUser = (name, email, password, role) => {
     }),
   });
 };
+
+export const loginUser = (email, password) => {
+  return fetch(`${BASE_URL}/auth`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
   });
 };
