@@ -24,13 +24,13 @@ export const Login = () => {
       .then((data) => {
         console.log(data.token);
         setToken(data.token);
-        navigate("/register");
+        navigate(data.role === "saloon" ? "/menu" : "/kitchen");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  
+
   return (
     <>
       <InputElement
