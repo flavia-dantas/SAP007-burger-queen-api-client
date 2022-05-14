@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
+import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -17,6 +19,7 @@ export const Login = () => {
         if (response.status === 200) {
           return response.json();
         }
+        statusCode();
       })
       .then((data) => {
         console.log(data.token);
