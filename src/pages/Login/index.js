@@ -5,6 +5,7 @@ import { InputElement } from "../../components/Input";
 import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
+import { LayoutForm } from "../../components/Layout";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,30 +34,33 @@ export const Login = () => {
 
   return (
     <>
-      <InputElement
-        type="email"
-        label="E-mail"
-        value={email}
-        name="input"
-        placeholder="user@user.com"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <InputElement
-        type="password"
-        label="Senha"
-        value={password}
-        name="input"
-        placeholder="******"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <LayoutForm>
+        <form>
+          <InputElement
+            type="email"
+            label="E-mail"
+            value={email}
+            name="input"
+            placeholder="user@user.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputElement
+            type="password"
+            label="Senha"
+            value={password}
+            name="input"
+            placeholder="******"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <Button text="Entrar" onClick={handleLogin} />
-
-      <p className="text-center">
-        <span className="text-span">Não possui conta? </span>
-        <Link className="text-link" to="/register">
-          Cadastre-se
-        </Link>
-      </p>
+        </form>
+        <p className="text-center">
+          <span className="text-span">Não possui conta? </span>
+          <Link className="text-link" to="/register">
+            Cadastre-se
+          </Link>
+        </p>
+      </LayoutForm>
     </>
   );
 };
