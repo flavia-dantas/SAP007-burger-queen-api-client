@@ -5,10 +5,12 @@ import { InputElement } from "../../components/Input";
 import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
+import { MessageStatusCode } from "../../components/MessageStatusCode";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ export const Login = () => {
         if (response.status === 200) {
           return response.json();
         }
-        statusCode();
+        setErrorMessage(statusCode(response));
       })
       .then((data) => {
         console.log(data.token);
@@ -50,6 +52,10 @@ export const Login = () => {
         name="input"
         placeholder="******"
         onChange={(e) => setPassword(e.target.value)}
+      />
+      <MessageStatusCode
+        disable={errorMessage ? false : true}
+        message={errorMessage}
       />
       <Button className="button" text="Entrar" onClick={handleLogin} />
 
