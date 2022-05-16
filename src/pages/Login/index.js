@@ -49,7 +49,7 @@ export const Login = () => {
         placeholder="******"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button className="button" text="Entrar" onClick={handleLogin} />
+          <Button text="Entrar" onClick={handleLogin} />
 
       <p className="text-center">
         <span className="text-span">Não possui conta? </span>

@@ -81,7 +81,7 @@ export const Register = () => {
           onChange={(e) => setRole(e.target.value)}
         />
         <MessageStatusCode disable={errorMessage} />        
-        <Button className="button" text="Cadastrar" onClick={handleSubmit} />
+          <Button text="Cadastrar" onClick={handleSubmit} />
       </form>
       <p className="text-center">
         <span className="text-span">Já possui conta?</span>
