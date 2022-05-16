@@ -40,7 +40,6 @@ export const Register = () => {
       <form>
         <InputElement
           type="text"
-          className="input"
           label="Nome"
           value={name}
           name="input"
@@ -49,7 +48,6 @@ export const Register = () => {
         />
         <InputElement
           type="email"
-          className="input"
           label="E-mail"
           value={email}
           name="input"
@@ -58,7 +56,6 @@ export const Register = () => {
         />
         <InputElement
           type="password"
-          className="input"
           label="Senha"
           value={password}
           name="input"

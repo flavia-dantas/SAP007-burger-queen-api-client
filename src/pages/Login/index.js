@@ -35,7 +35,6 @@ export const Login = () => {
     <>
       <InputElement
         type="email"
-        className="input"
         label="E-mail"
         value={email}
         name="input"
@@ -44,7 +43,6 @@ export const Login = () => {
       />
       <InputElement
         type="password"
-        className="input"
         label="Senha"
         value={password}
         name="input"
