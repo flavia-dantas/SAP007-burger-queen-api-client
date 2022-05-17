@@ -1,14 +1,21 @@
+import { useState } from "react";
 import { Button } from "../../components/Button";
 import { getProducts } from "../../services/products";
 
 export const Menu = () => {
-  const handleClickMenu = () => {
+  const [menu, setMenu] = useState([]);
+
+  const filterMenu = (data, type) => {
+    return data.filter((item) => item.type === type);
+  };
+
+  const handleClickMenu = (e) => {
     getProducts()
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+      .then((data) => setMenu(filterMenu(data, e.target.value)));
   };
+  console.log(menu);
+
   return (
     <>
       <p>MENU</p>
@@ -17,7 +24,16 @@ export const Menu = () => {
         value="breakfast"
         onClick={handleClickMenu}
       />
-      <Button text="Almoço e Jantar" value="allday" onClick={handleClickMenu} />
+      <Button
+        text="Almoço e Jantar"
+        value="all-day"
+        onClick={handleClickMenu}
+      />
+      <ul>
+        {menu.map((item) => {
+          return <li key={item.id}>{item.name}</li>;
+        })}
+      </ul>
     </>
   );
 };
