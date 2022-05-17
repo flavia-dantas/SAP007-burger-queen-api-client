@@ -1,19 +1,14 @@
 export const statusCode = (response) => {
-  let message = "";
-  switch ((response.status, message)) {
+  switch (response.status) {
     case 400:
-      message = "Preencha os dados obrigatórios";
-      break;
+      return "Preencha os dados obrigatórios";
     case 401:
-      message = "Usuário não autenticado";
-      break;
+      return "Usuário não autenticado";
     case 403:
-      message = "Email já cadastrado";
-      break;
+      return "Email já cadastrado";
     case 404:
-      message = "Usuário não encontrado";
-      break;
+      return "Usuário não encontrado";
     default:
-      message = "Ocorreu um erro, tente novamente";
+      return "Ocorreu um erro, tente novamente";
   }
 };

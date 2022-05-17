@@ -13,7 +13,7 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("saloon");
-  const [errorMessage, setErrorMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -23,8 +23,7 @@ export const Register = () => {
         if (response.status === 200) {
           return response.json();
         }
-        statusCode(response);
-        setErrorMessage(false);
+        setErrorMessage(statusCode(response));
       })
       .then((data) => {
         console.log(data.token);
@@ -82,7 +81,10 @@ export const Register = () => {
             checked={role === "kitchen"}
             onChange={(e) => setRole(e.target.value)}
           />
-          <MessageStatusCode disable={errorMessage} />
+          <MessageStatusCode
+            disable={errorMessage ? false : true}
+            message={errorMessage}
+          />
           <Button text="Cadastrar" onClick={handleSubmit} />
         </form>
         <p className="text-center">
