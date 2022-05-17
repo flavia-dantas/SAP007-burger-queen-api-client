@@ -1,0 +1,25 @@
+.container{
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.container-flexbox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-form {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #5E210C;
+}
+
+.container-content{
+  width: 400px;
+  background: #F5A717;
+  border-radius: 10px;
+  padding: 50px;
+  flex-direction: column;
+  gap:10px;
+}

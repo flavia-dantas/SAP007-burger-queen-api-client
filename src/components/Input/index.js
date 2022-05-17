@@ -1,22 +1,20 @@
 import "./style.css";
 export const InputElement = ({
   type,
-  className,
   value,
   name,
   placeholder,
   onChange,
   label,
-  classNameLabel,
   ...props
 }) => {
   return (
     <>
-      <div>
-        <label className={classNameLabel}>{label}</label>
+      <div className="input-container">
+        <label className="input-label">{label}</label>
         <input
           type={type}
-          className={className}
+          className="input"
           value={value}
           name={name}
           placeholder={placeholder}
