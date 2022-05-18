@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
+import { ButtonCountItems } from "../../components/ButtonCountItems";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -41,8 +42,8 @@ export const Menu = () => {
             name={item.name}
             price={item.price}
           >
-          </MenuCard>
-
+            <ButtonCountItems key2={item.id}/>
+          </MenuCard>     
           </>
           );
         })}
