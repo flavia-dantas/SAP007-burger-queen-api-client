@@ -1,0 +1,28 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  border: 2px solid #5E210C;
+  border-radius: 15px;
+  margin-left: 5%;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.item-image {
+  width: 180px;
+  height:150px ;
+  object-fit: cover;
+  object-position: 90% 0%;
+  border-radius: 15px 15px 0 0;
+}
+
+.item-name {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.item-price {
+  text-align: center;
+}

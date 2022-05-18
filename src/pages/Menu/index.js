@@ -1,5 +1,7 @@
+import "./style.css";
 import { useState } from "react";
 import { Button } from "../../components/Button";
+import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
 
@@ -30,9 +32,20 @@ export const Menu = () => {
         value="all-day"
         onClick={handleClickMenu}
       />
-      <ul>
+      <ul className="container-products">
         {menu.map((item) => {
-          <ButtonCountItems key2={item.id}/>
+          return (
+            <>
+          <MenuCard
+            key={item.id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+          >
+            <ButtonCountItems key2={item.id}/>
+          </MenuCard>     
+          </>
+          );
         })}
       </ul>
     </>
