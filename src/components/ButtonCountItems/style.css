@@ -1,0 +1,15 @@
+.count-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.count-button {
+  width: 40px;
+  height: 40px;
+  background-color: #FF8601;
+  border: none;
+  border-radius: 100%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

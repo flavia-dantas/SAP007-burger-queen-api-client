@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../components/Button";
 import { getProducts } from "../../services/products";
+import { ButtonCountItems } from "../../components/ButtonCountItems";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -31,7 +32,7 @@ export const Menu = () => {
       />
       <ul>
         {menu.map((item) => {
-          return <li key={item.id}>{item.name}</li>;
+          <ButtonCountItems key2={item.id}/>
         })}
       </ul>
     </>
