@@ -1,4 +1,12 @@
+.container-main {
+  width: 100%;
+}
+
 .container-products {
   display: flex;
   flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-between;
+  gap:10px;
 }
