@@ -1,5 +1,5 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
@@ -12,10 +12,18 @@ export const Menu = () => {
     return data.filter((item) => item.type === type);
   };
 
-  const handleClickMenu = (e) => {
-    getProducts()
+  const showProducts = async (option) => {
+    return getProducts()
       .then((response) => response.json())
-      .then((data) => setMenu(filterMenu(data, e.target.value)));
+      .then((data) => setMenu(filterMenu(data, option)));
+  };
+
+  useEffect(() => {
+    showProducts("breakfast");
+  }, []);
+
+  const handleClickMenu = (e) => {
+    return showProducts(e.target.value);
   };
   console.log(menu);
 
