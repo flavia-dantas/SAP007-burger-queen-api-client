@@ -30,6 +30,7 @@ export const Menu = () => {
   return (
     <>
       <p>MENU</p>
+      <div className="container-main">
       <Button
         text="Café da Manhã"
         value="breakfast"
@@ -56,6 +57,7 @@ export const Menu = () => {
           );
         })}
       </ul>
+      </div>
     </>
   );
 };
