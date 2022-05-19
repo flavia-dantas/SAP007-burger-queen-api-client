@@ -35,7 +35,7 @@ export const Menu = () => {
       <ul className="container-products">
         {menu.map((item) => {
           return (
-            <>
+            <div key={item.id}>
           <MenuCard
             key={item.id}
             image={item.image}
@@ -44,7 +44,7 @@ export const Menu = () => {
           >
             <ButtonCountItems key2={item.id}/>
           </MenuCard>     
-          </>
+            </div>
           );
         })}
       </ul>
