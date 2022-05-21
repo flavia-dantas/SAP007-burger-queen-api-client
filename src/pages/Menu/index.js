@@ -4,11 +4,15 @@ import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
+import { InputElement } from "../../components/Input";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [count, setCount] = useState(0);
   const [itemList, setItemList] = useState([]);
+  const [client, setClient] = useState("");
+  const [table, setTable] = useState("");
+  // const [product, setProduct] = useState("");
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -27,6 +31,14 @@ export const Menu = () => {
   const handleClickMenu = (e) => {
     return showProducts(e.target.value);
   };
+
+  // const getOrders = () => {
+  //   createOrder(client, table, product)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data, "dataorders");
+  //     });
+  // };
 
   const increaseCount = (item) => {
     const countElement = menu.find((element) => element.id === item.id);
@@ -90,22 +102,42 @@ export const Menu = () => {
         <ul className="container-products">
           {menu.map((item) => {
             return (
-            <div key={item.id}>
-              <MenuCard
-                image={item.image}
-                name={item.name}
-                price={item.price}
-              >
-                <ButtonCountItems
+              <div key={item.id}>
+                <MenuCard
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                >
+                  <ButtonCountItems
                     amount={item.qtd}
                     increase={() => increaseCount(item)}
                     decrease={() => decreaseCount(item)}
-                />
-              </MenuCard>
-            </div>
+                  />
+                </MenuCard>
+              </div>
             );
           })}
         </ul>
+        <InputElement
+          type="text"
+          label="Nome"
+          value={client}
+          name="input"
+          placeholder="Digite o nome do cliente"
+          onChange={(e) => setClient(e.target.value)}
+        />
+        <InputElement
+          type="number"
+          label="Mesa"
+          value={table}
+          name="input"
+          placeholder="Digite o nº da mesa"
+          onChange={(e) => setTable(e.target.value)}
+        />
+        <Button
+          text="Finalizar pedido"
+          // onClick={console.log(client, table, count)}
+        />
       </div>
     </>
   );
