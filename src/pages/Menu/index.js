@@ -7,12 +7,14 @@ import { ButtonCountItems } from "../../components/ButtonCountItems";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
-  const [count, setCount] = useState(0);
-  const [itemList, setItemList] = useState([]);
+  const [order, setOrder] = useState([]);
+  // const [count, setCount] = useState(0);
+  // const [itemList, setItemList] = useState([]);
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
   };
+
 
   const showProducts = async (option) => {
     return getProducts()
@@ -24,55 +26,90 @@ export const Menu = () => {
     showProducts("breakfast");
   }, []);
 
+  // useEffect ((data) => {
+  //   filterOrders(data);
+  // }, []);
+
   const handleClickMenu = (e) => {
     return showProducts(e.target.value);
   };
 
   const increaseCount = (item) => {
-    const countElement = menu.find((element) => element.id === item.id);
+    console.log(item);
+    const countElement = menu.map((product) => {
+      if(product.id === item.id){
+        product.qtd = product.qtd ? product.qtd + 1 : 1;
+      }
+      return product;
+    });
+    setMenu(countElement);
+    console.log(countElement, "countElement");
+    // const countElement = menu.find((element) => element.id === item.id);
 
-    if (countElement.qtd) {
-      countElement.qtd += 1;
-      console.log(itemList, "primeiro if increase");
-      setItemList(itemList);
-    } else {
-      itemList.push(item);
-      countElement.qtd = 1;
-      console.log(itemList, "else increase");
-      setItemList([...itemList]);
-    }
-    setCount(count + 1);
-    console.log(setCount, count, "adicionando numero");
+    // if (countElement.qtd) {
+    //   countElement.qtd += 1;
+    //   console.log(itemList, "primeiro if increase");
+    //   setItemList(itemList);
+    // } else {
+    //   itemList.push(item);
+    //   countElement.qtd += 1;
+    //   console.log(itemList, "else increase");
+    //   setItemList([...itemList]);
+    // }
+    // setCount(count + 1);
+    // console.log(setCount, count, "adicionando numero");
   };
 
   const decreaseCount = (item) => {
-    const countElement = itemList.find((element) => element.id === item.id);
-
-    if (countElement) {
-      if (countElement.qtd === 1) {
-        itemList.splice(
-          itemList.findIndex((element) => element.id === item.id),
-          1
-        );
-        countElement.qtd = 0;
-        console.log(itemList, "primeiro if decrease");
-
-        setItemList(itemList);
+    console.log(item);
+    const countElement = menu.map((product) => {
+      if(product.id === item.id){
+        product.qtd = product.qtd > 1 ? product.qtd - 1 : 0;
       }
-      if (countElement.qtd > 1) {
-        countElement.qtd -= 1;
-        console.log(itemList, "segundo if decrease");
-        setItemList(itemList);
-      }
+      return product;
+    });
+    setMenu(countElement);
+    // const countElement = itemList.find((element) => element.id === item.id);
 
-      setCount(count - 1);
+    // if (countElement) {
+    //   if (countElement.qtd === 1) {
+    //     itemList.splice(
+    //       itemList.findIndex((element) => element.id === item.id),
+    //       1
+    //     );
+    //     countElement.qtd = 0;
+    //     console.log(itemList, "primeiro if decrease");
+
+    //     setItemList(itemList);
+    //   }
+    //   if (countElement.qtd > 1) {
+    //     countElement.qtd -= 1;
+    //     console.log(itemList, "segundo if decrease");
+    //     setItemList(itemList);
+    //   }
+
+      // setCount(count - 1);
 
       // console.log(count, "removendo numero");
-    } else {
-      setItemList(itemList);
-    }
+    // } else {
+    //   setItemList(itemList);
+    // }
+  };
+  const teste = (value) => {
+    return value.qtd !== 0;
   };
 
+  const filterOrders = () =>{
+    console.log(menu, "menu");
+    return setOrder(menu.filter(teste));
+  };
+
+  // const handleOrders = () => {
+  //   filterOrders(order);
+  // console.log(order, "order");
+  // };
+
+  // console.log(menu, "menu");
   return (
     <>
       <p>MENU</p>
@@ -106,6 +143,20 @@ export const Menu = () => {
             );
           })}
         </ul>
+        <ul>
+          {order.map((item) => {
+            return (
+              <div key={item.id}>
+                <p>{item.name}</p>
+                <p>{item.price}</p>
+                <p>{item.qtd}</p>
+              </div>
+            );
+          })}
+
+        </ul>
+          <Button text="Teste" onClick={filterOrders}/>
+
       </div>
     </>
   );
