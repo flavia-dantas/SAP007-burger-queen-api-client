@@ -5,6 +5,7 @@ import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
 import { ItemCommand } from "../../components/ItemCommand";
+import { Header } from "../../components/Header";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -77,7 +78,8 @@ export const Menu = () => {
 
   return (
     <>
-      <p>MENU</p>
+      <Header titlePage="Cardápio" />
+
       <div className="container-main">
         <Button
           text="Café da Manhã"
