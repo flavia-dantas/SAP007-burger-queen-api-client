@@ -8,13 +8,10 @@ import { ButtonCountItems } from "../../components/ButtonCountItems";
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
-  // const [count, setCount] = useState(0);
-  // const [itemList, setItemList] = useState([]);
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
   };
-
 
   const showProducts = async (option) => {
     return getProducts()
@@ -26,90 +23,49 @@ export const Menu = () => {
     showProducts("breakfast");
   }, []);
 
-  // useEffect ((data) => {
-  //   filterOrders(data);
-  // }, []);
-
   const handleClickMenu = (e) => {
     return showProducts(e.target.value);
   };
 
   const increaseCount = (item) => {
-    console.log(item);
-    const countElement = menu.map((product) => {
-      if(product.id === item.id){
-        product.qtd = product.qtd ? product.qtd + 1 : 1;
-      }
-      return product;
-    });
-    setMenu(countElement);
-    console.log(countElement, "countElement");
-    // const countElement = menu.find((element) => element.id === item.id);
+    const countElement = order.find((element) => element.id === item.id);
 
-    // if (countElement.qtd) {
-    //   countElement.qtd += 1;
-    //   console.log(itemList, "primeiro if increase");
-    //   setItemList(itemList);
-    // } else {
-    //   itemList.push(item);
-    //   countElement.qtd += 1;
-    //   console.log(itemList, "else increase");
-    //   setItemList([...itemList]);
-    // }
-    // setCount(count + 1);
-    // console.log(setCount, count, "adicionando numero");
+    if (countElement) {
+      countElement.qtd += 1;
+      console.log(order, "primeiro if increase");
+    } else {
+      item.qtd = 1;
+      order.push(item);
+      console.log(order, "else increase");
+    }
+    setOrder([...order]);
   };
 
   const decreaseCount = (item) => {
-    console.log(item);
-    const countElement = menu.map((product) => {
-      if(product.id === item.id){
-        product.qtd = product.qtd > 1 ? product.qtd - 1 : 0;
+    const countElement = order.find((element) => element.id === item.id);
+
+    if (countElement) {
+      if (countElement.qtd === 1) {
+        order.splice(
+          order.findIndex((element) => element.id === item.id),
+          1
+        );
+        countElement.qtd = 0;
+        console.log(order, "primeiro if decrease");
       }
-      return product;
-    });
-    setMenu(countElement);
-    // const countElement = itemList.find((element) => element.id === item.id);
-
-    // if (countElement) {
-    //   if (countElement.qtd === 1) {
-    //     itemList.splice(
-    //       itemList.findIndex((element) => element.id === item.id),
-    //       1
-    //     );
-    //     countElement.qtd = 0;
-    //     console.log(itemList, "primeiro if decrease");
-
-    //     setItemList(itemList);
-    //   }
-    //   if (countElement.qtd > 1) {
-    //     countElement.qtd -= 1;
-    //     console.log(itemList, "segundo if decrease");
-    //     setItemList(itemList);
-    //   }
-
-      // setCount(count - 1);
-
-      // console.log(count, "removendo numero");
-    // } else {
-    //   setItemList(itemList);
-    // }
-  };
-  const teste = (value) => {
-    return value.qtd !== 0;
+      if (countElement.qtd > 1) {
+        countElement.qtd -= 1;
+        console.log(order, "segundo if decrease");
+      }
+    }
+    setOrder([...order]);
   };
 
-  const filterOrders = () =>{
-    console.log(menu, "menu");
-    return setOrder(menu.filter(teste));
+  const getItemCount = (item) => {
+    const findItem = order.find((element) => element.id === item.id);
+    return findItem ? findItem.qtd : 0;
   };
 
-  // const handleOrders = () => {
-  //   filterOrders(order);
-  // console.log(order, "order");
-  // };
-
-  // console.log(menu, "menu");
   return (
     <>
       <p>MENU</p>
@@ -127,36 +83,34 @@ export const Menu = () => {
         <ul className="container-products">
           {menu.map((item) => {
             return (
-            <div key={item.id}>
-              <MenuCard
-                image={item.image}
-                name={item.name}
-                price={item.price}
-              >
-                <ButtonCountItems
-                    amount={item.qtd}
+              <div key={item.id}>
+                <MenuCard
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                >
+                  <ButtonCountItems
+                    amount={getItemCount(item)}
                     increase={() => increaseCount(item)}
                     decrease={() => decreaseCount(item)}
-                />
-              </MenuCard>
-            </div>
+                  />
+                </MenuCard>
+              </div>
             );
           })}
         </ul>
         <ul>
           {order.map((item) => {
             return (
-              <div key={item.id}>
+              <div key={`order-${item.id}`}>
                 <p>{item.name}</p>
                 <p>{item.price}</p>
                 <p>{item.qtd}</p>
               </div>
             );
           })}
-
         </ul>
-          <Button text="Teste" onClick={filterOrders}/>
-
+        <Button text="Finalizar Pedido" />
       </div>
     </>
   );
