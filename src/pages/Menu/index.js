@@ -4,6 +4,7 @@ import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
+import { ItemCommand } from "../../components/ItemCommand";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -66,6 +67,14 @@ export const Menu = () => {
     return findItem ? findItem.qtd : 0;
   };
 
+  const deleteItem = (teste) => {
+    order.splice(
+      order.findIndex((element) => element.id === teste.id),
+      1
+    );
+    setOrder([...order]);
+  };
+
   return (
     <>
       <p>MENU</p>
@@ -103,9 +112,18 @@ export const Menu = () => {
           {order.map((item) => {
             return (
               <div key={`order-${item.id}`}>
-                <p>{item.name}</p>
-                <p>{item.price}</p>
-                <p>{item.qtd}</p>
+                <ItemCommand
+                  qtd={item.qtd}
+                  name={item.name}
+                  price={item.price}
+                  onClickDelete={deleteItem}
+                >
+                  <ButtonCountItems
+                    amount={getItemCount(item)}
+                    increase={() => increaseCount(item)}
+                    decrease={() => decreaseCount(item)}
+                  />
+                </ItemCommand>
               </div>
             );
           })}
