@@ -4,15 +4,10 @@ import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
 import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
-import { InputElement } from "../../components/Input";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
-  const [count, setCount] = useState(0);
-  const [itemList, setItemList] = useState([]);
-  const [client, setClient] = useState("");
-  const [table, setTable] = useState("");
-  // const [product, setProduct] = useState("");
+  const [order, setOrder] = useState([]);
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -32,57 +27,43 @@ export const Menu = () => {
     return showProducts(e.target.value);
   };
 
-  // const getOrders = () => {
-  //   createOrder(client, table, product)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data, "dataorders");
-  //     });
-  // };
-
   const increaseCount = (item) => {
-    const countElement = menu.find((element) => element.id === item.id);
+    const countElement = order.find((element) => element.id === item.id);
 
-    if (countElement.qtd) {
+    if (countElement) {
       countElement.qtd += 1;
-      console.log(itemList, "primeiro if increase");
-      setItemList(itemList);
+      console.log(order, "primeiro if increase");
     } else {
-      itemList.push(item);
-      countElement.qtd = 1;
-      console.log(itemList, "else increase");
-      setItemList([...itemList]);
+      item.qtd = 1;
+      order.push(item);
+      console.log(order, "else increase");
     }
-    setCount(count + 1);
-    console.log(setCount, count, "adicionando numero");
+    setOrder([...order]);
   };
 
   const decreaseCount = (item) => {
-    const countElement = itemList.find((element) => element.id === item.id);
+    const countElement = order.find((element) => element.id === item.id);
 
     if (countElement) {
       if (countElement.qtd === 1) {
-        itemList.splice(
-          itemList.findIndex((element) => element.id === item.id),
+        order.splice(
+          order.findIndex((element) => element.id === item.id),
           1
         );
         countElement.qtd = 0;
-        console.log(itemList, "primeiro if decrease");
-
-        setItemList(itemList);
+        console.log(order, "primeiro if decrease");
       }
       if (countElement.qtd > 1) {
         countElement.qtd -= 1;
-        console.log(itemList, "segundo if decrease");
-        setItemList(itemList);
+        console.log(order, "segundo if decrease");
       }
-
-      setCount(count - 1);
-
-      // console.log(count, "removendo numero");
-    } else {
-      setItemList(itemList);
     }
+    setOrder([...order]);
+  };
+
+  const getItemCount = (item) => {
+    const findItem = order.find((element) => element.id === item.id);
+    return findItem ? findItem.qtd : 0;
   };
 
   return (
@@ -109,7 +90,7 @@ export const Menu = () => {
                   price={item.price}
                 >
                   <ButtonCountItems
-                    amount={item.qtd}
+                    amount={getItemCount(item)}
                     increase={() => increaseCount(item)}
                     decrease={() => decreaseCount(item)}
                   />
@@ -118,26 +99,18 @@ export const Menu = () => {
             );
           })}
         </ul>
-        <InputElement
-          type="text"
-          label="Nome"
-          value={client}
-          name="input"
-          placeholder="Digite o nome do cliente"
-          onChange={(e) => setClient(e.target.value)}
-        />
-        <InputElement
-          type="number"
-          label="Mesa"
-          value={table}
-          name="input"
-          placeholder="Digite o nº da mesa"
-          onChange={(e) => setTable(e.target.value)}
-        />
-        <Button
-          text="Finalizar pedido"
-          // onClick={console.log(client, table, count)}
-        />
+        <ul>
+          {order.map((item) => {
+            return (
+              <div key={`order-${item.id}`}>
+                <p>{item.name}</p>
+                <p>{item.price}</p>
+                <p>{item.qtd}</p>
+              </div>
+            );
+          })}
+        </ul>
+        <Button text="Finalizar Pedido" />
       </div>
     </>
   );
