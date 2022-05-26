@@ -118,6 +118,7 @@ export const Menu = () => {
                   qtd={item.qtd}
                   name={item.name}
                   price={item.price}
+                  totalPriceItem={item.price * item.qtd}
                   onClickDelete={deleteItem}
                 >
                   <ButtonCountItems
