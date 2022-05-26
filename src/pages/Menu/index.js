@@ -6,10 +6,14 @@ import { getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
 import { ItemCommand } from "../../components/ItemCommand";
 import { Header } from "../../components/Header";
+import { InputElement } from "../../components/Input";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const [client, setClient] = useState("");
+  const [table, setTable] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -24,6 +28,13 @@ export const Menu = () => {
   useEffect(() => {
     showProducts("breakfast");
   }, []);
+
+  useEffect(()=>{
+    const totalOrder = order.reduce((previousValue, item)=>{
+      return previousValue + item.qtd * item.price;
+    },0);
+    setTotalPrice(totalOrder);
+  },[order]);
 
   const handleClickMenu = (e) => {
     return showProducts(e.target.value);
@@ -79,7 +90,6 @@ export const Menu = () => {
   return (
     <>
       <Header titlePage="Cardápio" />
-
       <div className="container-main">
         <Button
           text="Café da Manhã"
@@ -94,7 +104,7 @@ export const Menu = () => {
         <ul className="container-products">
           {menu.map((item) => {
             return (
-              <div key={item.id}>
+              <div key={`order-${item.id}`}>
                 <MenuCard
                   image={item.image}
                   name={item.name}
@@ -110,6 +120,26 @@ export const Menu = () => {
             );
           })}
         </ul>
+        <div>
+        <InputElement
+          type="text"
+          label="Nome"
+          value={client}
+          name="input"
+          placeholder="Digite o nome do cliente"
+          autoComplete="off"
+          onChange={(e) => setClient(e.target.value)}
+        />
+        <InputElement
+          type="number"
+          label="Mesa"
+          value={table}
+          name="input"
+          placeholder="Nº"
+          autoComplete="off"
+          onChange={(e) => setTable(e.target.value)}
+        />
+        </div>
         <ul>
           {order.map((item) => {
             return (
@@ -131,6 +161,7 @@ export const Menu = () => {
             );
           })}
         </ul>
+        <p>R${totalPrice},00</p>
         <Button text="Finalizar Pedido" />
       </div>
     </>
