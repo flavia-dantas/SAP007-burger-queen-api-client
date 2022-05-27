@@ -2,7 +2,7 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import { Button } from "../../components/Button";
 import { MenuCard } from "../../components/MenuCard";
-import { getProducts } from "../../services/products";
+import { createOrder, getProducts } from "../../services/products";
 import { ButtonCountItems } from "../../components/ButtonCountItems";
 import { ItemCommand } from "../../components/ItemCommand";
 import { Header } from "../../components/Header";
@@ -11,6 +11,7 @@ import { InputElement } from "../../components/Input";
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
+  const [storageOrder, setStorageOrder] = useState([]);
   const [client, setClient] = useState("");
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -23,6 +24,16 @@ export const Menu = () => {
     return getProducts()
       .then((response) => response.json())
       .then((data) => setMenu(filterMenu(data, option)));
+  };
+
+  const sendOrder = () => {
+    createOrder(client, table, order)
+    .then((response) => response.json())
+    .then((data) => {
+      setStorageOrder(data);
+      console.log(data);
+    });
+    console.log([...storageOrder], "storage");
   };
 
   useEffect(() => {
@@ -162,7 +173,7 @@ export const Menu = () => {
           })}
         </ul>
         <p>R${totalPrice},00</p>
-        <Button text="Finalizar Pedido" />
+        <Button text="Finalizar Pedido" onClick={sendOrder} />
       </div>
     </>
   );
