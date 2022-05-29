@@ -9,7 +9,7 @@ export const createUser = (name, email, password, role) => {
       email: email,
       password: password,
       role: role,
-      restaurant: "Burguer Queen",
+      restaurant: "The Lord of the Burgers",
     }),
   });
 };
