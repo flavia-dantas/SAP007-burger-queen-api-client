@@ -3,14 +3,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2%;
 }
 
 .button {
-  width: 100px;
+  width: 120px;
   height: 25px;
   border: none;
   border-radius: 8px;
   background-color: #823B01;
   color: #ffffff;
   cursor: pointer;
+  font-weight: bold;
 }
