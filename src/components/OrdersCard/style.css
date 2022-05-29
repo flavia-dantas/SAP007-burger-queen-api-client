@@ -1,0 +1,10 @@
+.orders-card {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  border: 2px solid #5E210C;
+  border-radius: 15px;
+  gap: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
