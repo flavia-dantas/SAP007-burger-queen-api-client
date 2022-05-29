@@ -21,3 +21,10 @@ export const createOrder = (client, table, products) => {
     }),
   });
 };
+
+export const getOrders = () => {
+  return fetch(`${BASE_URL}/orders`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: token },
+  });
+};
