@@ -31,9 +31,9 @@ export const Menu = () => {
     .then((response) => response.json())
     .then((data) => {
       setStorageOrder(data);
-      console.log(data);
+      console.log(data, "data");
     });
-    console.log([...storageOrder], "storage");
+    console.log([storageOrder], "storage");
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const Menu = () => {
   }, []);
 
   useEffect(()=>{
-    const totalOrder = order.reduce((previousValue, item)=>{
+    const totalOrder = order.reduce((previousValue, item) => {
       return previousValue + item.qtd * item.price;
     },0);
     setTotalPrice(totalOrder);
