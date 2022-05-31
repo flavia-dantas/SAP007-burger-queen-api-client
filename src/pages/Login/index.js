@@ -40,6 +40,8 @@ export const Login = () => {
     <>
       <LayoutForm>
         <img className="logo" src={Logo} alt="logo" />
+        <form className="container-form">
+          <h2 className="form-title">Entrar</h2>
           <InputElement
             type="email"
             label="E-mail"
@@ -57,8 +59,8 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <MessageStatusCode
-          disable={errorMessage ? false : true}
-          message={errorMessage}
+            disable={errorMessage ? false : true}
+            message={errorMessage}
           />
           <Button text="Entrar" onClick={handleLogin} />
         </form>
