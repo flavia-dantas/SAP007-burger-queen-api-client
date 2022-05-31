@@ -7,6 +7,7 @@ import { MessageStatusCode } from "../../components/MessageStatusCode";
 import { createUser } from "../../services/auth";
 import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
+import Logo from "../../assets/logo.svg";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -38,7 +39,7 @@ export const Register = () => {
   return (
     <>
       <LayoutForm>
-        <form>
+      <img className="logo" src={Logo} alt="logo"/>
           <InputElement
             type="text"
             label="Nome"

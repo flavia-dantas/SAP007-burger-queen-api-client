@@ -8,6 +8,7 @@ import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
 import { MessageStatusCode } from "../../components/MessageStatusCode";
+import Logo from "../../assets/logo.svg";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ export const Login = () => {
   return (
     <>
       <LayoutForm>
-        <form>
+        <img className="logo" src={Logo} alt="logo" />
           <InputElement
             type="email"
             label="E-mail"
