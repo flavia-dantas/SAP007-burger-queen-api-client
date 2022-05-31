@@ -1,0 +1,23 @@
+.item-detail {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trash-can {
+  background-color: transparent;
+  border: none;
+}
+
+
+
+/* .total {
+  display: flex;
+
+} */

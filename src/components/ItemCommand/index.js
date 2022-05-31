@@ -1,17 +1,25 @@
+import "./style.css";
 import TrashCan from "../../assets/trash_can.svg";
 
-export const ItemCommand = ({ qtd, name, price, children, onClickDelete, totalPriceItem}) => {
+export const ItemCommand = ({
+  qtd,
+  name,
+  price,
+  children,
+  onClickDelete,
+  totalPriceItem,
+}) => {
   return (
-    <li>
-      <div>
-      <p>
-        {qtd} x <span> {name}</span> <span>R${price},00</span>
-      </p>
-      <p>R${totalPriceItem},00</p>
+    <li className="item-list">
+      <div className="item-detail">
+        <p>
+          {qtd} x <span> {name}</span> <span>R${price},00</span>
+        </p>
+        <p>R${totalPriceItem},00</p>
       </div>
-      <div>
+      <div className="item-detail">
         <div>{children}</div>
-        <button onClick={onClickDelete}>
+        <button className="trash-can" onClick={onClickDelete}>
           <img src={TrashCan} />
         </button>
       </div>
