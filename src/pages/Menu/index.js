@@ -15,6 +15,7 @@ export const Menu = () => {
   const [client, setClient] = useState("");
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
+  const [changeColor, setChangeColor] = useState(false);
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -28,11 +29,11 @@ export const Menu = () => {
 
   const sendOrder = () => {
     createOrder(client, table, order)
-    .then((response) => response.json())
-    .then((data) => {
-      setStorageOrder(data);
-      console.log(data, "data");
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        setStorageOrder(data);
+        console.log(data, "data");
+      });
     console.log([storageOrder], "storage");
   };
 
@@ -40,14 +41,16 @@ export const Menu = () => {
     showProducts("breakfast");
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const totalOrder = order.reduce((previousValue, item) => {
       return previousValue + item.qtd * item.price;
-    },0);
+    }, 0);
     setTotalPrice(totalOrder);
-  },[order]);
+  }, [order]);
 
   const handleClickMenu = (e) => {
+    // setChangeColor(!changeColor);
+    console.log(setChangeColor);
     return showProducts(e.target.value);
   };
 
@@ -104,94 +107,100 @@ export const Menu = () => {
       <div className="container-main">
         <section className="menu-section">
           <div className="container-button">
-        <Button
+            <Button
               className="button-menu button"
               classNameContainer="button-container-right button-container "
-          text="Café da Manhã"
-          value="breakfast"
-          onClick={handleClickMenu}
-        />
-        <Button
+              text="Café da Manhã"
+              value="breakfast"
+              onClick={handleClickMenu}
+              style={{
+                backgroundColor: changeColor === true ? "#FF8601" : "#C16101",
+              }}
+            />
+            <Button
               className="button-menu button"
               classNameContainer="button-container-left button-container "
-          text="Almoço e Jantar"
-          value="all-day"
-          onClick={handleClickMenu}
-        />
+              text="Almoço e Jantar"
+              value="all-day"
+              onClick={handleClickMenu}
+              style={{
+                backgroundColor: changeColor === true ? "#FF8601" : "#C16101",
+              }}
+            />
           </div>
-        <ul className="container-products">
-          {menu.map((item) => {
-            return (
-              <div key={`order-${item.id}`}>
-                <MenuCard
-                  image={item.image}
-                  name={item.name}
-                  price={item.price}
-                >
-                  <ButtonCountItems
-                    amount={getItemCount(item)}
-                    increase={() => increaseCount(item)}
-                    decrease={() => decreaseCount(item)}
-                  />
-                </MenuCard>
-              </div>
-            );
-          })}
-        </ul>
+          <ul className="container-products">
+            {menu.map((item) => {
+              return (
+                <div key={`order-${item.id}`}>
+                  <MenuCard
+                    image={item.image}
+                    name={item.name}
+                    price={item.price}
+                  >
+                    <ButtonCountItems
+                      amount={getItemCount(item)}
+                      increase={() => increaseCount(item)}
+                      decrease={() => decreaseCount(item)}
+                    />
+                  </MenuCard>
+                </div>
+              );
+            })}
+          </ul>
         </section>
         <section className="order-section">
           <h2 className="order-title">Pedido</h2>
           <div className="inputs-order">
-        <InputElement
+            <InputElement
               classNameInput="input-size input"
-          type="text"
-          label="Nome"
-          value={client}
-          name="input"
-          placeholder="Digite o nome do cliente"
-          autoComplete="off"
-          onChange={(e) => setClient(e.target.value)}
-        />
-        <InputElement
+              type="text"
+              label="Nome"
+              value={client}
+              name="input"
+              placeholder="Digite o nome do cliente"
+              autoComplete="off"
+              onChange={(e) => setClient(e.target.value)}
+            />
+            <InputElement
               classNameInput="input-size input"
-          type="number"
+              type="number"
               min="1"
-          label="Mesa"
-          value={table}
-          name="input"
-          placeholder="Nº"
-          autoComplete="off"
-          onChange={(e) => setTable(e.target.value)}
-        />
-        </div>
+              label="Mesa"
+              value={table}
+              name="input"
+              placeholder="Nº"
+              autoComplete="off"
+              onChange={(e) => setTable(e.target.value)}
+            />
+          </div>
           <ul className="items-container">
-          {order.map((item) => {
-            return (
+            {order.map((item) => {
+              return (
                 <div className="item-map" key={`order-${item.id}`}>
-                <ItemCommand
-                  qtd={item.qtd}
-                  name={item.name}
-                  price={item.price}
-                  totalPriceItem={item.price * item.qtd}
-                  onClickDelete={deleteItem}
-                >
-                  <ButtonCountItems
+                  <ItemCommand
+                    qtd={item.qtd}
+                    name={item.name}
+                    price={item.price}
+                    totalPriceItem={item.price * item.qtd}
+                    onClickDelete={deleteItem}
+                  >
+                    <ButtonCountItems
                       classNameButton="button-count-order"
-                    amount={getItemCount(item)}
-                    increase={() => increaseCount(item)}
-                    decrease={() => decreaseCount(item)}
-                  />
-                </ItemCommand>
-              </div>
-            );
-          })}
-        </ul>
+                      amount={getItemCount(item)}
+                      increase={() => increaseCount(item)}
+                      decrease={() => decreaseCount(item)}
+                    />
+                  </ItemCommand>
+                </div>
+              );
+            })}
+          </ul>
           <div className="total-order-container">
             <p className="total-order">
               <span>Total</span>
               <span>R${totalPrice},00</span>
             </p>
-        <Button text="Finalizar Pedido" onClick={sendOrder} />
+            <Button text="Finalizar Pedido" onClick={sendOrder} />
           </div>
         </section>
       </div>
