@@ -1,8 +1,10 @@
+import "./style.css";
+
 export const MessageStatusCode = ({ message }) => {
   return (
     <>
-      <div>
-        <p>{message}</p>
+      <div className="error-message-container">
+        <p className="message">{message}</p>
       </div>
     </>
   );

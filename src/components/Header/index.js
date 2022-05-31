@@ -1,9 +1,8 @@
 import "./style.css";
 import Logo from "../../assets/logo.svg";
 import Exit from "../../assets/exit.svg";
-import ShoppingCart from "../../assets/shopping_cart.svg";
 
-export const Header = ({ titlePage, onClickExit, onClickCart }) => {
+export const Header = ({ titlePage, onClickExit }) => {
   return (
     <header className="header">
       <picture className="logo">
@@ -13,9 +12,6 @@ export const Header = ({ titlePage, onClickExit, onClickCart }) => {
       <div className="buttons-container">
         <button className="button-header" onClick={onClickExit}>
           <img src={Exit} />
-        </button>
-        <button className="button-header" onClick={onClickCart}>
-          <img src={ShoppingCart} />
         </button>
       </div>
     </header>

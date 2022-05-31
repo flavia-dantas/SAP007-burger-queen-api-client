@@ -1,3 +1,4 @@
+import "./style.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
@@ -7,6 +8,7 @@ import { MessageStatusCode } from "../../components/MessageStatusCode";
 import { createUser } from "../../services/auth";
 import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
+import Logo from "../../assets/logo.svg";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -38,7 +40,9 @@ export const Register = () => {
   return (
     <>
       <LayoutForm>
-        <form>
+      <img className="logo" src={Logo} alt="logo"/>
+        <form className="container-form">
+          <h2 className="form-title">Cadastre-se</h2>
           <InputElement
             type="text"
             label="Nome"
@@ -63,9 +67,11 @@ export const Register = () => {
             placeholder="******"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className="input-radio-container">
           <InputElement
             type="radio"
             className="input-radio"
+            classNameLabel="label-radio input-label"
             label="Atendente"
             value="saloon"
             name="role"
@@ -75,12 +81,14 @@ export const Register = () => {
           <InputElement
             type="radio"
             className="input-radio"
+            classNameLabel="label-radio input-label"
             label="Cozinha"
             value="kitchen"
             name="role"
             checked={role === "kitchen"}
             onChange={(e) => setRole(e.target.value)}
           />
+          </div>
           <MessageStatusCode
             disable={errorMessage ? false : true}
             message={errorMessage}

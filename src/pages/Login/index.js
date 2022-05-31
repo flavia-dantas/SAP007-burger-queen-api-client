@@ -8,6 +8,7 @@ import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
 import { MessageStatusCode } from "../../components/MessageStatusCode";
+import Logo from "../../assets/logo.svg";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +39,9 @@ export const Login = () => {
   return (
     <>
       <LayoutForm>
-        <form>
+        <img className="logo" src={Logo} alt="logo" />
+        <form className="container-form">
+          <h2 className="form-title">Entrar</h2>
           <InputElement
             type="email"
             label="E-mail"
@@ -56,8 +59,8 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <MessageStatusCode
-          disable={errorMessage ? false : true}
-          message={errorMessage}
+            disable={errorMessage ? false : true}
+            message={errorMessage}
           />
           <Button text="Entrar" onClick={handleLogin} />
         </form>

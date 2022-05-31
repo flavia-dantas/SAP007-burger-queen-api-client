@@ -1,0 +1,14 @@
+.error-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 10px;
+  margin: auto;
+}
+
+.message {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+}

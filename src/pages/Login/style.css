@@ -1,3 +1,11 @@
+.logo{
+ align-items: center;
+}
+
+.container-form {
+  width: 100%;
+}
+
 .text-center{
   font-size: 0.9rem;
 }
