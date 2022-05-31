@@ -102,16 +102,23 @@ export const Menu = () => {
     <>
       <Header titlePage="Cardápio" />
       <div className="container-main">
+        <section className="menu-section">
+          <div className="container-button">
         <Button
+              className="button-menu button"
+              classNameContainer="button-container-right button-container "
           text="Café da Manhã"
           value="breakfast"
           onClick={handleClickMenu}
         />
         <Button
+              className="button-menu button"
+              classNameContainer="button-container-left button-container "
           text="Almoço e Jantar"
           value="all-day"
           onClick={handleClickMenu}
         />
+          </div>
         <ul className="container-products">
           {menu.map((item) => {
             return (
@@ -131,8 +138,12 @@ export const Menu = () => {
             );
           })}
         </ul>
-        <div>
+        </section>
+        <section className="order-section">
+          <h2 className="order-title">Pedido</h2>
+          <div className="inputs-order">
         <InputElement
+              classNameInput="input-size input"
           type="text"
           label="Nome"
           value={client}
@@ -142,7 +153,9 @@ export const Menu = () => {
           onChange={(e) => setClient(e.target.value)}
         />
         <InputElement
+              classNameInput="input-size input"
           type="number"
+              min="1"
           label="Mesa"
           value={table}
           name="input"
@@ -151,10 +164,10 @@ export const Menu = () => {
           onChange={(e) => setTable(e.target.value)}
         />
         </div>
-        <ul>
+          <ul className="items-container">
           {order.map((item) => {
             return (
-              <div key={`order-${item.id}`}>
+                <div className="item-map" key={`order-${item.id}`}>
                 <ItemCommand
                   qtd={item.qtd}
                   name={item.name}
@@ -163,6 +176,7 @@ export const Menu = () => {
                   onClickDelete={deleteItem}
                 >
                   <ButtonCountItems
+                      classNameButton="button-count-order"
                     amount={getItemCount(item)}
                     increase={() => increaseCount(item)}
                     decrease={() => decreaseCount(item)}
@@ -172,8 +186,14 @@ export const Menu = () => {
             );
           })}
         </ul>
-        <p>R${totalPrice},00</p>
+          <div className="total-order-container">
+            <p className="total-order">
+              <span>Total</span>
+              <span>R${totalPrice},00</span>
+            </p>
         <Button text="Finalizar Pedido" onClick={sendOrder} />
+          </div>
+        </section>
       </div>
     </>
   );
