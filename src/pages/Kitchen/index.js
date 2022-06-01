@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { OrdersCard } from "../../components/OrdersCard";
 import { ProductsOrder } from "../../components/ProductsOrder";
 import { getOrders } from "../../services/products";
+import { Header } from "../../components/Header";
 
 export const Kitchen = () => {
   const [orders, setOrders] = useState([]);
@@ -20,7 +21,7 @@ export const Kitchen = () => {
 
   return (
     <>
-      <p>Kitchen</p>
+      <Header titlePage="Cozinha" />
       <ul className="orders-container">
         {orders.map((item) => {
           return (
