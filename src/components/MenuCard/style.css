@@ -1,12 +1,15 @@
+@import "../../variables.css";
+
 .item {
   display: flex;
   flex-direction: column;
   width: 180px;
-  border: 2px solid #5E210C;
+  border: 2px solid var(--bg-seal-brown);
   border-radius: 15px;
   gap: 10px;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  background-color: var(--bg-antique-white);
 }
 
 .item-image {

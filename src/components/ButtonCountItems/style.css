@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .count-container {
   display: flex;
   justify-content: space-around;
@@ -8,7 +10,7 @@
 .count-button {
   width: 40px;
   height: 40px;
-  background-color: #FF8601;
+  background-color: var(--bg-orange);
   border: none;
   border-radius: 100%;
   font-size: 1.5rem;
