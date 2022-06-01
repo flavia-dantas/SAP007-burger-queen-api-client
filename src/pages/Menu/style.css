@@ -8,7 +8,6 @@
 }
 
 .menu-section {
-  overflow: auto;
   height: 100%;
   width: 70%;
   background-color: var(--bg-seal-brown);
@@ -36,22 +35,35 @@
   margin: 0;
 }
 
+.container-menu{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: var(--bg-seal-brown);
+}
+
 .container-products {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
+  height: 100%;
   margin: 0 auto;
   justify-content: space-between;
   gap:10px;
 }
 
-.order-section {
+.order-aside{
   width: 30%;
-  height: 100%;
+  height: calc(100vh - 130px);
   display: flex;
   flex-direction: column;
+  padding: 0 20px;
   background-color: var(--bg-antique-white);
+}
+
+.order-section {
+  width:100%;
+  height: 100%;
 }
 
 .order-title {
@@ -96,10 +108,11 @@
 
 .total-order-container {
   width: 30%;
+  height: 10%;
   display: flex;
   flex-direction: column;
   position: fixed;
-  bottom: 20px;
+  bottom: 0;
   gap:10px;
   background-color: var(--bg-antique-white);
 }
