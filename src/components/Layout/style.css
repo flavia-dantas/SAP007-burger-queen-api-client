@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .container{
   width: 100vw;
   margin: 0 auto;
@@ -12,12 +14,12 @@
 .container-layout {
   width: 100vw;
   min-height: 100vh;
-  background-color: #5E210C;
+  background-color: var(--bg-seal-brown);
 }
 
 .container-content{
   width: 400px;
-  background: #F5A717;
+  background: var(--bg-yellow);
   border-radius: 10px;
   padding: 50px;
   flex-direction: column;

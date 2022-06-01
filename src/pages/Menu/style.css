@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .container-main {
   width: 100vw;
   height: calc(100vh - 130px);
@@ -9,6 +11,7 @@
   overflow: auto;
   height: 100%;
   width: 70%;
+  background-color: var(--bg-seal-brown);
 }
 
 .container-button {
@@ -33,6 +36,7 @@
   margin: 0;
 }
 
+  background-color: var(--bg-seal-brown);
 .container-products {
   display: flex;
   flex-wrap: wrap;
@@ -47,13 +51,13 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  background-color: var(--bg-antique-white);
 }
 
 .order-title {
   text-align: center;
   margin: auto;
-  color: #C16101;
+  color: var(--orange-dark);
   font-weight: 600;
   font-size: 1.5rem;
   padding-top: 20px;
@@ -76,12 +80,13 @@
   overflow: auto;
   height: 75%;
   margin-bottom: 30% ;
+  background-color: var(--bg-antique-white);
 }
 
 .button-count-order {
   width: 25px;
   height: 25px;
-  background-color: #FF8601;
+  background-color: var(--bg-orange);
   border: none;
   border-radius: 100%;
   font-size: 1.5rem;
@@ -96,6 +101,7 @@
   position: fixed;
   bottom: 20px;
   gap:10px;
+  background-color: var(--bg-antique-white);
 }
 
 .total-order {

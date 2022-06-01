@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .logo{
  align-items: center;
 }
@@ -11,10 +13,10 @@
 }
 
 .text-span{
-  color: #390E00;
+  color: var(--black-bean);
 }
 
 .text-link{
   font-weight: bold;
-  color: #ffffff;
+  color: var(--white);
 }

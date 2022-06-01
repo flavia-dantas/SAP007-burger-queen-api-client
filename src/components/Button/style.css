@@ -1,3 +1,5 @@
+@import "../../variables.css";
+
 .button-container {
   width: 100%;
   display: flex;
@@ -11,8 +13,8 @@
   height: 35px;
   border: none;
   border-radius: 8px;
-  background-color: #823B01;
-  color: #ffffff;
+  background-color: var(--chocolate);
+  color: var(--white);
   cursor: pointer;
   font-weight: bold;
 }
