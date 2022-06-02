@@ -5,15 +5,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 130px;
+  height: 100px;
 }
 
 .logo {
   margin-left: 10px;
 }
 
+.logo-burger{
+  width: 140px;
+}
+
 .header-title {
-  font-size: 4rem;
+  font-size: 3rem;
   color: var( --orange-dark);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

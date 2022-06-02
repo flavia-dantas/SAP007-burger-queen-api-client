@@ -18,7 +18,7 @@ export const Header = ({ titlePage }) => {
   return (
     <header className="header">
       <picture className="logo">
-        <img src={Logo} />
+        <img className="logo-burger" src={Logo} />
       </picture>
       <h1 className="header-title">{titlePage}</h1>
       <div className="buttons-container">
