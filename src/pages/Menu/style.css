@@ -1,7 +1,7 @@
 @import "../../variables.css";
 
 .container-main {
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: row;
@@ -37,9 +37,8 @@
 
 .container-menu{
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 170px);
   overflow: auto;
-  background-color: var(--bg-seal-brown);
 }
 
 .container-products {
@@ -90,8 +89,7 @@
   flex-direction: column;
   gap: 20px;
   overflow: auto;
-  height: 75%;
-  margin-bottom: 30% ;
+  height: 60%;
   background-color: var(--bg-antique-white);
 }
 
@@ -101,9 +99,8 @@
   background-color: var(--bg-orange);
   border: none;
   border-radius: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
-
 }
 
 .total-order-container {
@@ -112,7 +109,7 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  bottom: 0;
+  bottom: 15px;
   gap:10px;
   background-color: var(--bg-antique-white);
 }
