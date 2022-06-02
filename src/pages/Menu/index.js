@@ -15,7 +15,7 @@ export const Menu = () => {
   const [client, setClient] = useState("");
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
-  const [changeColor, setChangeColor] = useState(false);
+  const [changeColor, setChangeColor] = useState("breakfast");
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -49,7 +49,7 @@ export const Menu = () => {
   }, [order]);
 
   const handleClickMenu = (e) => {
-    // setChangeColor(!changeColor);
+    setChangeColor(e.target.value);
     console.log(setChangeColor);
     return showProducts(e.target.value);
   };
@@ -114,7 +114,8 @@ export const Menu = () => {
               value="breakfast"
               onClick={handleClickMenu}
               style={{
-                backgroundColor: changeColor === true ? "#FF8601" : "#C16101",
+                backgroundColor:
+                  changeColor === "breakfast" ? "#FF8601" : "#C16101",
               }}
             />
             <Button
@@ -124,7 +125,8 @@ export const Menu = () => {
               value="all-day"
               onClick={handleClickMenu}
               style={{
-                backgroundColor: changeColor === true ? "#FF8601" : "#C16101",
+                backgroundColor:
+                  changeColor === "all-day" ? "#FF8601" : "#C16101",
               }}
             />
           </div>
