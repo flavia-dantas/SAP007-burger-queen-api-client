@@ -11,7 +11,7 @@ import { InputElement } from "../../components/Input";
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [order, setOrder] = useState([]);
-  const [storageOrder, setStorageOrder] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [client, setClient] = useState("");
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -27,18 +27,14 @@ export const Menu = () => {
       .then((data) => setMenu(filterMenu(data, option)));
   };
 
-  const sendOrder = () => {
-    createOrder(client, table, order)
+  useEffect(() => {
+    getProducts()
       .then((response) => response.json())
       .then((data) => {
-        setStorageOrder(data);
-        console.log(data, "data");
+        setAllProducts(data);
+        const filteredBreakfast = filterMenu(data, "breakfast");
+        setMenu(filteredBreakfast);
       });
-    console.log([storageOrder], "storage");
-  };
-
-  useEffect(() => {
-    showProducts("breakfast");
   }, []);
 
   useEffect(() => {
@@ -50,8 +46,8 @@ export const Menu = () => {
 
   const handleClickMenu = (e) => {
     setChangeColor(e.target.value);
-    console.log(setChangeColor);
-    return showProducts(e.target.value);
+    const filteredProducts = filterMenu(allProducts, e.target.value);
+    setMenu(filteredProducts);
   };
 
   const increaseCount = (item) => {
@@ -59,11 +55,9 @@ export const Menu = () => {
 
     if (countElement) {
       countElement.qtd += 1;
-      console.log(order, "primeiro if increase");
     } else {
       item.qtd = 1;
       order.push(item);
-      console.log(order, "else increase");
     }
     setOrder([...order]);
   };
@@ -78,11 +72,9 @@ export const Menu = () => {
           1
         );
         countElement.qtd = 0;
-        console.log(order, "primeiro if decrease");
       }
       if (countElement.qtd > 1) {
         countElement.qtd -= 1;
-        console.log(order, "segundo if decrease");
       }
     }
     setOrder([...order]);
