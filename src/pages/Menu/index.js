@@ -136,6 +136,8 @@ export const Menu = () => {
                     <MenuCard
                       image={item.image}
                       name={item.name}
+                      flavor={item.flavor}
+                      complement={item.complement}
                       price={item.price}
                     >
                       <ButtonCountItems
@@ -203,8 +205,8 @@ export const Menu = () => {
                 <span>Total</span>
                 <span>R${totalPrice},00</span>
               </p>
-                <Button text="Finalizar Pedido" onClick={sendOrder} />
-              </div>
+              <Button text="Finalizar Pedido" onClick={sendOrder} />
+            </div>
           </section>
         </aside>
       </div>

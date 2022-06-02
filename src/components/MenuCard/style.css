@@ -20,9 +20,20 @@
   border-radius: 15px 15px 0 0;
 }
 
-.item-name {
+.main-info {
   font-size: 1rem;
   text-align: center;
+  color: var(--black-bean);
+}
+
+.item-flavor {
+  height: 15px;
+}
+
+.item-complement {
+  font-size: 0.8rem;
+  opacity: 0.44;
+  height: 10px;
 }
 
 .item-price {
