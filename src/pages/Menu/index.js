@@ -21,10 +21,12 @@ export const Menu = () => {
     return data.filter((item) => item.type === type);
   };
 
-  const showProducts = async (option) => {
-    return getProducts()
-      .then((response) => response.json())
-      .then((data) => setMenu(filterMenu(data, option)));
+  const sendOrder = () => {
+    createOrder(client, table, order).then(() => {
+      setOrder([]);
+      setTable("");
+      setClient("");
+    });
   };
 
   useEffect(() => {
