@@ -7,6 +7,7 @@ import { ButtonCountItems } from "../../components/ButtonCountItems";
 import { ItemCommand } from "../../components/ItemCommand";
 import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
+import { ErrorMessage } from "../../components/ErrorMessage";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -208,6 +209,10 @@ export const Menu = () => {
                 <span>Total</span>
                 <span>R${totalPrice},00</span>
               </p>
+              <ErrorMessage
+                disable={errorMessage ? false : true}
+                message={errorMessage}
+              />
               <Button text="Finalizar Pedido" onClick={sendOrder} />
             </div>
           </section>

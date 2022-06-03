@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
 import { LayoutForm } from "../../components/Layout";
-import { MessageStatusCode } from "../../components/MessageStatusCode";
+import { ErrorMessage } from "../../components/ErrorMessage";
 import { createUser } from "../../services/auth";
 import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
@@ -89,7 +89,7 @@ export const Register = () => {
             onChange={(e) => setRole(e.target.value)}
           />
           </div>
-          <MessageStatusCode
+          <ErrorMessage
             disable={errorMessage ? false : true}
             message={errorMessage}
           />

@@ -7,7 +7,7 @@ import { statusCode } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
-import { MessageStatusCode } from "../../components/MessageStatusCode";
+import { ErrorMessage } from "../../components/ErrorMessage";
 import Logo from "../../assets/logo.svg";
 
 export const Login = () => {
@@ -58,7 +58,7 @@ export const Login = () => {
             placeholder="******"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <MessageStatusCode
+          <ErrorMessage
             disable={errorMessage ? false : true}
             message={errorMessage}
           />
