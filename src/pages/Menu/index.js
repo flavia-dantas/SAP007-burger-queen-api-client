@@ -98,10 +98,10 @@ export const Menu = () => {
     createOrder(client, table, order)
     .then((response) => {
       if(response.status === 200){
-      setOrder([]);
-      setTable("");
-      setClient("");
-      console.log("enviado!");
+        setOrder([]);
+        setTable("");
+        setClient("");
+        console.log("enviado!");
         return response.json();
       }
       setErrorMessage(CreateOrderError(response));
@@ -167,27 +167,27 @@ export const Menu = () => {
             <h2 className="order-title">Pedido</h2>
             <div className="inputs-order">
               <div className="input-client">
-              <InputElement
-                type="text"
+                <InputElement
+                  type="text"
                   label="Nome do Cliente"
-                value={client}
-                name="input"
+                  value={client}
+                  name="input"
                   placeholder="Nome do cliente"
-                autoComplete="off"
-                onChange={(e) => setClient(e.target.value)}
-              />
+                  autoComplete="off"
+                  onChange={(e) => setClient(e.target.value)}
+                />
               </div>
               <div className="input-table">
-              <InputElement
-                type="number"
-                min="1"
-                label="Mesa"
-                value={table}
-                name="input"
-                placeholder="Nº"
-                autoComplete="off"
-                onChange={(e) => setTable(e.target.value)}
-              />
+                <InputElement
+                  type="number"
+                  min="1"
+                  label="Mesa"
+                  value={table}
+                  name="input"
+                  placeholder="Nº"
+                  autoComplete="off"
+                  onChange={(e) => setTable(e.target.value)}
+                />
               </div>
             </div>
             <ul className="items-container">
@@ -198,6 +198,8 @@ export const Menu = () => {
                       qtd={item.qtd}
                       name={item.name}
                       price={item.price}
+                      flavor={item.flavor}
+                      complement={item.complement}
                       totalPriceItem={item.price * item.qtd}
                       onClickDelete={deleteItem}
                     >

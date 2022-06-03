@@ -4,6 +4,8 @@ import TrashCan from "../../assets/trash_can.svg";
 export const ItemCommand = ({
   qtd,
   name,
+  flavor,
+  complement,
   price,
   children,
   onClickDelete,
@@ -16,6 +18,12 @@ export const ItemCommand = ({
           {qtd} x <span> {name}</span> <span>R${price},00</span>
         </p>
         <p>R${totalPriceItem},00</p>
+      </div>
+      <div className="item-additional">
+        <p> {flavor} </p>
+        <p>
+          {complement === null ? "" : `+ complemento: ${complement}`}
+          </p>
       </div>
       <div className="item-detail">
         <div>{children}</div>
