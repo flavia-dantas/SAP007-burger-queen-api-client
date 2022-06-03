@@ -9,6 +9,7 @@ import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import Logo from "../../assets/logo.svg";
+import { hideErrorMessage } from "../../data";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +34,7 @@ export const Login = () => {
         navigate(data.role === "saloon" ? "/menu" : "/kitchen");
       })
       .catch(() => setErrorMessage(LoginError({status:500})));
+      hideErrorMessage(setErrorMessage);
   };
 
   return (
