@@ -26,13 +26,13 @@ export const Menu = () => {
     getProducts()
       .then((response) => response.json())
       .then((data) => {
-        setMenu(data);
         const filteredBreakfast = filterMenu(data, "breakfast");
         setBreakfastMenu(filteredBreakfast);
         console.log(filteredBreakfast, "breakfast");
         const filteredAllDay = filterMenu(data, "all-day");
         setAllDayMenu(filteredAllDay);
         console.log(filteredAllDay, "all-day");
+        setMenu(filteredBreakfast);
       });
   }, []);
 
