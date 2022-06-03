@@ -21,8 +21,9 @@
 }
 
 .button-menu {
+  min-width: 184px;
   height: 50px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .button-container-left {
@@ -80,8 +81,12 @@
   width: 100%;
 }
 
-.input-size {
-  width: 90%;
+.input-client {
+  width: 70%;
+}
+
+.input-table {
+  width: 30%;
 }
 
 .items-container {
@@ -105,17 +110,18 @@
 
 .total-order-container {
   width: 30%;
-  height: 10%;
+  height: 15%;
   display: flex;
   flex-direction: column;
   position: fixed;
   bottom: 15px;
-  gap:10px;
   background-color: var(--bg-antique-white);
+  color: var( --black-bean);
 }
 
 .total-order {
  display: flex;
  justify-content: space-between;
- width: 100%;
+ width: 95%;
+ font-weight: bold;
 }

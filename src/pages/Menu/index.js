@@ -157,18 +157,19 @@ export const Menu = () => {
           <section className="order-section">
             <h2 className="order-title">Pedido</h2>
             <div className="inputs-order">
+              <div className="input-client">
               <InputElement
-                classNameInput="input-size input"
                 type="text"
-                label="Nome"
+                  label="Nome do Cliente"
                 value={client}
                 name="input"
-                placeholder="Digite o nome do cliente"
+                  placeholder="Nome do cliente"
                 autoComplete="off"
                 onChange={(e) => setClient(e.target.value)}
               />
+              </div>
+              <div className="input-table">
               <InputElement
-                classNameInput="input-size input"
                 type="number"
                 min="1"
                 label="Mesa"
@@ -178,6 +179,7 @@ export const Menu = () => {
                 autoComplete="off"
                 onChange={(e) => setTable(e.target.value)}
               />
+              </div>
             </div>
             <ul className="items-container">
               {order.map((item) => {
