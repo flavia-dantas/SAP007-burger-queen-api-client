@@ -7,6 +7,8 @@ import { ButtonCountItems } from "../../components/ButtonCountItems";
 import { ItemCommand } from "../../components/ItemCommand";
 import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { CreateOrderError } from "../../services/error";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -17,6 +19,7 @@ export const Menu = () => {
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [changeColor, setChangeColor] = useState("breakfast");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const filterMenu = (data, type) => {
     return data.filter((item) => item.type === type);
@@ -92,12 +95,18 @@ export const Menu = () => {
   }, [order]);
 
   const sendOrder = () => {
-    createOrder(client, table, order).then(() => {
+    createOrder(client, table, order)
+    .then((response) => {
+      if(response.status === 200){
       setOrder([]);
       setTable("");
       setClient("");
       console.log("enviado!");
-    });
+        return response.json();
+      }
+      setErrorMessage(CreateOrderError(response));
+    })
+    .catch(() => setErrorMessage(CreateOrderError({status:500})));
   };
 
   return (
@@ -208,6 +217,10 @@ export const Menu = () => {
                 <span>Total</span>
                 <span>R${totalPrice},00</span>
               </p>
+              <ErrorMessage
+                disable={errorMessage ? false : true}
+                message={errorMessage}
+              />
               <Button text="Finalizar Pedido" onClick={sendOrder} />
             </div>
           </section>

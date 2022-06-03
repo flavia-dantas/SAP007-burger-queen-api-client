@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
-import { statusCode } from "../../services/error";
+import { LoginError } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
-import { MessageStatusCode } from "../../components/MessageStatusCode";
+import { ErrorMessage } from "../../components/ErrorMessage";
 import Logo from "../../assets/logo.svg";
 
 export const Login = () => {
@@ -24,16 +24,15 @@ export const Login = () => {
         if (response.status === 200) {
           return response.json();
         }
-        setErrorMessage(statusCode(response));
+        setErrorMessage(LoginError(response));
       })
       .then((data) => {
+        if(!data) return;
         console.log(data.token);
         setToken(data.token);
         navigate(data.role === "saloon" ? "/menu" : "/kitchen");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(() => setErrorMessage(LoginError({status:500})));
   };
 
   return (
@@ -58,7 +57,7 @@ export const Login = () => {
             placeholder="******"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <MessageStatusCode
+          <ErrorMessage
             disable={errorMessage ? false : true}
             message={errorMessage}
           />
