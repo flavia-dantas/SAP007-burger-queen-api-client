@@ -9,6 +9,7 @@ import { createUser } from "../../services/auth";
 import { RegisterError } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import Logo from "../../assets/logo.svg";
+import { hideErrorMessage } from "../../data";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -34,6 +35,7 @@ export const Register = () => {
         navigate("/");
       })
       .catch(() => setErrorMessage(RegisterError({status:500})));
+      hideErrorMessage(setErrorMessage);
   };
 
   return (

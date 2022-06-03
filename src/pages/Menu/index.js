@@ -9,6 +9,7 @@ import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
+import { hideErrorMessage } from "../../data";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -107,6 +108,7 @@ export const Menu = () => {
       setErrorMessage(CreateOrderError(response));
     })
     .catch(() => setErrorMessage(CreateOrderError({status:500})));
+    hideErrorMessage(setErrorMessage);
   };
 
   return (
