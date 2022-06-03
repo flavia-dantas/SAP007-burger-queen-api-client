@@ -10,8 +10,9 @@ import { InputElement } from "../../components/Input";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
+  const [breakfastMenu, setBreakfastMenu] = useState([]);
   const [order, setOrder] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
+  const [allDayMenu, setAllDayMenu] = useState([]);
   const [client, setClient] = useState("");
   const [table, setTable] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -21,35 +22,23 @@ export const Menu = () => {
     return data.filter((item) => item.type === type);
   };
 
-  const sendOrder = () => {
-    createOrder(client, table, order).then(() => {
-      setOrder([]);
-      setTable("");
-      setClient("");
-    });
-  };
-
   useEffect(() => {
     getProducts()
       .then((response) => response.json())
       .then((data) => {
-        setAllProducts(data);
+        setMenu(data);
         const filteredBreakfast = filterMenu(data, "breakfast");
-        setMenu(filteredBreakfast);
+        setBreakfastMenu(filteredBreakfast);
+        console.log(filteredBreakfast, "breakfast");
+        const filteredAllDay = filterMenu(data, "all-day");
+        setAllDayMenu(filteredAllDay);
+        console.log(filteredAllDay, "all-day");
       });
   }, []);
 
-  useEffect(() => {
-    const totalOrder = order.reduce((previousValue, item) => {
-      return previousValue + item.qtd * item.price;
-    }, 0);
-    setTotalPrice(totalOrder);
-  }, [order]);
-
   const handleClickMenu = (e) => {
     setChangeColor(e.target.value);
-    const filteredProducts = filterMenu(allProducts, e.target.value);
-    setMenu(filteredProducts);
+    e.target.value === "breakfast" ? setMenu(breakfastMenu) : setMenu(allDayMenu);
   };
 
   const increaseCount = (item) => {
@@ -72,15 +61,15 @@ export const Menu = () => {
         order.splice(
           order.findIndex((element) => element.id === item.id),
           1
-        );
-        countElement.qtd = 0;
+          );
+          countElement.qtd = 0;
+        }
+        if (countElement.qtd > 1) {
+          countElement.qtd -= 1;
+        }
       }
-      if (countElement.qtd > 1) {
-        countElement.qtd -= 1;
-      }
-    }
-    setOrder([...order]);
-  };
+      setOrder([...order]);
+    };
 
   const getItemCount = (item) => {
     const findItem = order.find((element) => element.id === item.id);
@@ -91,8 +80,24 @@ export const Menu = () => {
     order.splice(
       order.findIndex((element) => element.id === teste.id),
       1
-    );
-    setOrder([...order]);
+      );
+      setOrder([...order]);
+    };
+
+  useEffect(() => {
+    const totalOrder = order.reduce((previousValue, item) => {
+      return previousValue + item.qtd * item.price;
+    }, 0);
+    setTotalPrice(totalOrder);
+  }, [order]);
+
+  const sendOrder = () => {
+    createOrder(client, table, order).then(() => {
+      setOrder([]);
+      setTable("");
+      setClient("");
+      console.log("enviado!");
+    });
   };
 
   return (
