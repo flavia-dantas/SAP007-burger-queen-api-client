@@ -9,7 +9,7 @@ import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
-import { hideErrorMessage } from "../../data";
+import { filterMenu, hideErrorMessage } from "../../data";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -21,10 +21,6 @@ export const Menu = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [changeColor, setChangeColor] = useState("breakfast");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const filterMenu = (data, type) => {
-    return data.filter((item) => item.type === type);
-  };
 
   useEffect(() => {
     getProducts()
