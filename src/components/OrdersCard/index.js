@@ -1,6 +1,7 @@
+import { Button } from "../Button";
 import "./style.css";
 
-export const OrdersCard = ({id, clientName, table, status, createdAt, updatedAt, products}) => {
+export const OrdersCard = ({id, clientName, table, status, createdAt, updatedAt, products, onClick}) => {
   return (
     <li className="orders-card">
       <p>Nº Pedido: {id}</p>
@@ -10,6 +11,7 @@ export const OrdersCard = ({id, clientName, table, status, createdAt, updatedAt,
       <p>Criado: {createdAt}</p>
       <p>Última Atualização: {updatedAt}</p>
       <ul>Produtos: {products}</ul>
+      <Button text={status} onClick={onClick}/>
     </li>
   );
 };
