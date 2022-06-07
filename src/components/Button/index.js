@@ -1,7 +1,7 @@
 import "./style.css";
 
 export const Button = ({
-  text,
+  children,
   onClick,
   classNameContainer = "button-container",
   className = "button",
@@ -10,7 +10,7 @@ export const Button = ({
   return (
     <div className={classNameContainer}>
       <button className={className} onClick={onClick} {...props}>
-        {text}
+        {children}
       </button>
     </div>
   );

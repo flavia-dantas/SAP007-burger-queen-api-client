@@ -45,7 +45,7 @@ export const Kitchen = () => {
                   </div>
                 );
               })}
-              />
+              >{item.status}</OrdersCard>
             </div>
           );
         })}

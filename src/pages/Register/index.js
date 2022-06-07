@@ -94,7 +94,7 @@ export const Register = () => {
             disable={errorMessage ? false : true}
             message={errorMessage}
           />
-          <Button text="Cadastrar" onClick={handleSubmit} />
+          <Button onClick={handleSubmit}>Cadastrar</Button>
         </form>
         <p className="text-center">
           <span className="text-span">Já possui conta? </span>
