@@ -31,10 +31,10 @@ export const Menu = () => {
       .then((data) => {
         const filteredBreakfast = filterMenu(data, "breakfast");
         setBreakfastMenu(filteredBreakfast);
-        console.log(filteredBreakfast, "breakfast");
+        // console.log(filteredBreakfast, "breakfast");
         const filteredAllDay = filterMenu(data, "all-day");
         setAllDayMenu(filteredAllDay);
-        console.log(filteredAllDay, "all-day");
+        // console.log(filteredAllDay, "all-day");
         setMenu(filteredBreakfast);
       });
   }, []);
@@ -85,7 +85,7 @@ export const Menu = () => {
       1
       );
       setOrder([...order]);
-    };
+  };
 
   useEffect(() => {
     const totalOrder = order.reduce((previousValue, item) => {
@@ -165,30 +165,30 @@ export const Menu = () => {
           <section className="order-section">
             <h2 className="order-title">Pedido</h2>
             <div className="inputs-order">
-              <div className="input-client">
-                <InputElement
-                  type="text"
-                  label="Nome do Cliente"
-                  value={client}
-                  name="input"
-                  placeholder="Nome do cliente"
-                  autoComplete="off"
-                  onChange={(e) => setClient(e.target.value)}
-                />
+                <div className="input-client">
+                  <InputElement
+                    type="text"
+                    label="Nome do Cliente"
+                    value={client}
+                    name="input"
+                    placeholder="Nome do cliente"
+                    autoComplete="off"
+                    onChange={(e) => setClient(e.target.value)}
+                  />
+                </div>
+                <div className="input-table">
+                  <InputElement
+                    type="number"
+                    min="1"
+                    label="Mesa"
+                    value={table}
+                    name="input"
+                    placeholder="Nº"
+                    autoComplete="off"
+                    onChange={(e) => setTable(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="input-table">
-                <InputElement
-                  type="number"
-                  min="1"
-                  label="Mesa"
-                  value={table}
-                  name="input"
-                  placeholder="Nº"
-                  autoComplete="off"
-                  onChange={(e) => setTable(e.target.value)}
-                />
-              </div>
-            </div>
             <ul className="items-container">
               {order.map((item) => {
                 return (
@@ -200,7 +200,7 @@ export const Menu = () => {
                       flavor={item.flavor}
                       complement={item.complement}
                       totalPriceItem={item.price * item.qtd}
-                      onClickDelete={deleteItem}
+                      onClickDelete={() => setModal((previous) => !previous)}
                     >
                       <ButtonCountItems
                         classNameButton="button-count-order"
