@@ -5,9 +5,3 @@ export const hideErrorMessage = (setErrorMessage) => {
 export const filterMenu = (data, type) => {
   return data.filter((item) => item.type === type);
 };
-
-
-export const sortData = (data) => {
-  const copyData = [...data];
-  return copyData.sort((a, b) =>b.id -a.id);
-};
