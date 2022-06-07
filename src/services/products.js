@@ -28,3 +28,11 @@ export const getOrders = () => {
     headers: { "Content-Type": "application/json", Authorization: token },
   });
 };
+
+export const updateOrders = (orderId, status) => {
+  return fetch(`${BASE_URL}/orders/${orderId}`, {
+  method: "PUT",
+  headers: { "Content-Type": "application/json", Authorization: token },
+  body: JSON.stringify({status: status})
+  });
+};
