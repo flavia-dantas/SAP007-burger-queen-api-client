@@ -63,7 +63,7 @@ export const Login = () => {
             disable={errorMessage ? false : true}
             message={errorMessage}
           />
-          <Button text="Entrar" onClick={handleLogin} />
+          <Button onClick={handleLogin} >Entrar</Button>
         </form>
         <p className="text-center">
           <span className="text-span">Não possui conta? </span>
