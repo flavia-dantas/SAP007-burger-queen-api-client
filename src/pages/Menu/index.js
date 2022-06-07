@@ -116,25 +116,23 @@ export const Menu = () => {
             <Button
               className="button-menu button"
               classNameContainer="button-container-right button-container "
-              text="Café da Manhã"
               value="breakfast"
               onClick={handleClickMenu}
               style={{
                 backgroundColor:
                   changeColor === "breakfast" ? "#FF8601" : "#C16101",
               }}
-            />
+            >Café da Manhã</Button>
             <Button
               className="button-menu button"
-              classNameContainer="button-container-left button-container "
-              text="Almoço e Jantar"
+              classNameContainer="button-container-left button-container"
               value="all-day"
               onClick={handleClickMenu}
               style={{
                 backgroundColor:
                   changeColor === "all-day" ? "#FF8601" : "#C16101",
               }}
-            />
+            >Almoço e Jantar</Button>
           </div>
           <div className="container-menu">
             <ul className="container-products">
@@ -221,7 +219,7 @@ export const Menu = () => {
                 disable={errorMessage ? false : true}
                 message={errorMessage}
               />
-              <Button text="Finalizar Pedido" onClick={sendOrder} />
+              <Button onClick={sendOrder} >Finalizar Pedido</Button>
             </div>
           </section>
         </aside>
