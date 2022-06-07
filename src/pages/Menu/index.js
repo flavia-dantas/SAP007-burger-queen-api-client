@@ -10,6 +10,7 @@ import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
 import { filterMenu, hideErrorMessage } from "../../data";
+import { Modal } from "../../components/Modal";
 
 export const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -21,6 +22,7 @@ export const Menu = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [changeColor, setChangeColor] = useState("breakfast");
   const [errorMessage, setErrorMessage] = useState("");
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     getProducts()
@@ -223,6 +225,13 @@ export const Menu = () => {
             </div>
           </section>
         </aside>
+        <Modal
+        modal={modal}
+        click={() => setModal(false)}
+        onClickYes={deleteItem}
+        onClickNo={() => setModal(false)}>
+          Você tem certeza que deseja excluir o produto?
+        </Modal>
       </div>
     </>
   );
