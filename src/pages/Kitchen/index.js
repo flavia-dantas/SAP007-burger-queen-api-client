@@ -17,14 +17,24 @@ export const Kitchen = () => {
     .then((data) => setOrders(sortData(data)));
   }, []);
 
+  useEffect(() => {
+  }, [orders]);
+
   const orderStatus = (item, e) => {
-    if (e.target.value === "pending") {
-      updateOrders(item.id, "em preparo");
+    updateOrders(item.id, e.target.value)
+    .then((response) => {
+      if (response.status === 200) {
+        const copyOrders = orders.map((copyOrder) => {
+          if (copyOrder.id === item.id ) {
+            copyOrder.status = e.target.value;
+            copyOrder.updatedAt = new Date();
     }
-    else if (e.target.value === "done") {
-      updateOrders(item.id, "pronto");
+          return copyOrder;
+        });
+        setOrders(copyOrders);
     }
-    setUpdate(e.target.value);
+    });
+  };
 
   };
 
@@ -40,7 +50,7 @@ export const Kitchen = () => {
               id={item.id}
               clientName={item.client_name}
               table={item.table}
-              status={update}
+              status={item.status}
               createdAt={item.createdAt}
               updatedAt={item.updatedAt}
               products={item.Products.map((element) => {
@@ -56,8 +66,10 @@ export const Kitchen = () => {
                 );
               })}
               >
-                <Button onClick={(e) => orderStatus(item, e)} value="preparing">Em preparo</Button>
-                <Button onClick={(e) => orderStatus(item, e)} value="done">Pronto</Button>
+                {item.status === "pending" ?
+                <Button onClick={(e) => orderStatus(item, e)} value="preparing">
+                  Em preparo</Button> : item.status === "preparing" &&
+                 <Button onClick={(e) => orderStatus(item, e)} value="done">Pronto</Button>}
               </OrdersCard>
             </div>
           );
