@@ -23,6 +23,7 @@ export const Menu = () => {
   const [changeColor, setChangeColor] = useState("breakfast");
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, setModal] = useState(false);
+  const [modalSendOrder, setModalSendOrder] = useState(false);
 
   useEffect(() => {
     getProducts()
@@ -221,7 +222,7 @@ export const Menu = () => {
                 disable={errorMessage ? false : true}
                 message={errorMessage}
               />
-              <Button onClick={sendOrder} >Finalizar Pedido</Button>
+              <Button onClick={() => setModalSendOrder((previous) => !previous)} >Finalizar Pedido</Button>
             </div>
           </section>
         </aside>
@@ -231,6 +232,13 @@ export const Menu = () => {
         onClickYes={deleteItem}
         onClickNo={() => setModal(false)}>
           Você tem certeza que deseja excluir o produto?
+        </Modal>
+        <Modal
+        modal={modalSendOrder}
+        click={() => setModalSendOrder(false)}
+        onClickYes={sendOrder}
+        onClickNo={() => setModalSendOrder(false)}>
+          Deseja finalizar o pedido?
         </Modal>
       </div>
     </>
