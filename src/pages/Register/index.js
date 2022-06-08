@@ -9,7 +9,7 @@ import { createUser } from "../../services/auth";
 import { RegisterError } from "../../services/error";
 import { setToken } from "../../services/localStorage";
 import Logo from "../../assets/logo.svg";
-import { hideErrorMessage } from "../../data";
+import { hideErrorMessage } from "../../helper";
 
 export const Register = () => {
   const [name, setName] = useState("");
