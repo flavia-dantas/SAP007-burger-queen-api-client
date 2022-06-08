@@ -9,7 +9,7 @@ import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
-import { filterMenu, hideErrorMessage } from "../../data";
+import { filterMenu, hideErrorMessage } from "../../helper";
 import { Modal } from "../../components/Modal";
 
 export const Menu = () => {

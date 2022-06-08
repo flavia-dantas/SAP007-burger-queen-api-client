@@ -9,7 +9,7 @@ import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import Logo from "../../assets/logo.svg";
-import { hideErrorMessage } from "../../data";
+import { hideErrorMessage } from "../../helper";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

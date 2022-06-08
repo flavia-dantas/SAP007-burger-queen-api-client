@@ -4,7 +4,7 @@ import { OrdersCard } from "../../components/OrdersCard";
 import { ProductsOrder } from "../../components/ProductsOrder";
 import { getOrders, updateOrders } from "../../services/products";
 import { Header } from "../../components/Header";
-import { sortData } from "../../data";
+import { sortData } from "../../helper";
 import { Button } from "../../components/Button";
 
 export const Kitchen = () => {
