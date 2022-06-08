@@ -27,12 +27,18 @@ export const Kitchen = () => {
           if (copyOrder.id === item.id ) {
             copyOrder.status = e.target.value;
             copyOrder.updatedAt = new Date();
-    }
+          }
           return copyOrder;
         });
         setOrders(copyOrders);
-    }
+      }
     });
+  };
+
+  const formatDate = (date) => {
+    const teste = new Date(date);
+    const options = { year: "numeric", month: "numeric", day: "numeric", hour:"numeric", minute:"numeric", second:"numeric"};
+    return teste.toLocaleDateString("pt-BR", options);
   };
 
   return (
@@ -47,8 +53,8 @@ export const Kitchen = () => {
               clientName={item.client_name}
               table={item.table}
               status={item.status}
-              createdAt={item.createdAt}
-              updatedAt={item.updatedAt}
+              createdAt={formatDate(item.createdAt)}
+              updatedAt={formatDate(item.updatedAt)}
               products={item.Products.map((element) => {
                 return (
                   <div key={element.id}>
