@@ -9,7 +9,6 @@ import { Button } from "../../components/Button";
 
 export const Kitchen = () => {
   const [orders, setOrders] = useState([]);
-  const [update, setUpdate] = useState("pendente");
 
   useEffect(() => {
     getOrders()
@@ -36,8 +35,6 @@ export const Kitchen = () => {
     });
   };
 
-  };
-
   return (
     <>
       <Header titlePage="Cozinha" />
@@ -45,7 +42,6 @@ export const Kitchen = () => {
         {orders.map((item) => {
           return (
             <div key={item.id}>
-              <Button value={update}>{update}</Button>
               <OrdersCard
               id={item.id}
               clientName={item.client_name}
