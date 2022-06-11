@@ -20,13 +20,11 @@ export const ItemCommand = ({
         <p>R${totalPriceItem},00</p>
       </div>
       <div className="item-additional">
-        <p> {flavor} </p>
-        <p>
-          {complement === null ? "" : `+ complemento: ${complement}`}
-          </p>
+        {flavor === null ? "" : <p> {flavor} </p>}
+        {complement === null ? "" : <p> + complemento: ${complement}</p>}
       </div>
       <div className="item-detail">
-        <div>{children}</div>
+        {children}
         <button className="trash-can" onClick={onClickDelete}>
           <img src={TrashCan} />
         </button>
