@@ -6,6 +6,7 @@ import { getOrders, updateOrders } from "../../services/products";
 import { Header } from "../../components/Header";
 import { sortData } from "../../helper";
 import { Button } from "../../components/Button";
+import { calculationPreparationTime, formatTime } from "../../helper/preparationTime";
 
 export const Kitchen = () => {
   const [orders, setOrders] = useState([]);
@@ -27,18 +28,13 @@ export const Kitchen = () => {
           if (copyOrder.id === item.id ) {
             copyOrder.status = e.target.value;
             copyOrder.updatedAt = new Date();
+            copyOrder.processedAt = new Date();
           }
           return copyOrder;
         });
         setOrders(copyOrders);
       }
     });
-  };
-
-  const formatDate = (date) => {
-    const teste = new Date(date);
-    const options = { year: "numeric", month: "numeric", day: "numeric", hour:"numeric", minute:"numeric", second:"numeric"};
-    return teste.toLocaleDateString("pt-BR", options);
   };
 
   return (
@@ -53,8 +49,10 @@ export const Kitchen = () => {
               clientName={item.client_name}
               table={item.table}
               status={item.status}
-              createdAt={formatDate(item.createdAt)}
-              updatedAt={formatDate(item.updatedAt)}
+              createdAt={formatTime(item.createdAt)}
+              updatedAt={formatTime(item.updatedAt)}
+              processedAt={formatTime(item.processedAt)}
+              preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
               products={item.Products.map((element) => {
                 return (
                   <div key={element.id}>
@@ -70,7 +68,7 @@ export const Kitchen = () => {
               >
                 {item.status === "pending" ?
                 <Button onClick={(e) => orderStatus(item, e)} value="preparing">
-                  Em preparo</Button> : item.status === "preparing" &&
+                  Preparar</Button> : item.status === "preparing" &&
                  <Button onClick={(e) => orderStatus(item, e)} value="done">Pronto</Button>}
               </OrdersCard>
             </div>
