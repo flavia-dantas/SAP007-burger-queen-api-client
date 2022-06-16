@@ -21,7 +21,7 @@ export const ItemCommand = ({
       </div>
       <div className="item-additional">
         {flavor === null ? "" : <p> {flavor} </p>}
-        {complement === null ? "" : <p> + complemento: ${complement}</p>}
+        {complement === null ? "" : <p> + complemento: {complement}</p>}
       </div>
       <div className="item-detail">
         {children}

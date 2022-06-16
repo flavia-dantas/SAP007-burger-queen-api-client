@@ -9,7 +9,7 @@ import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
-import { filterMenu, hideErrorMessage } from "../../helper";
+import { filterData, hideErrorMessage } from "../../helper";
 import { Modal } from "../../components/Modal";
 
 export const Menu = () => {
@@ -29,10 +29,10 @@ export const Menu = () => {
     getProducts()
       .then((response) => response.json())
       .then((data) => {
-        const filteredBreakfast = filterMenu(data, "breakfast");
+        const filteredBreakfast = filterData(data, "breakfast");
         setBreakfastMenu(filteredBreakfast);
         // console.log(filteredBreakfast, "breakfast");
-        const filteredAllDay = filterMenu(data, "all-day");
+        const filteredAllDay = filterData(data, "all-day");
         setAllDayMenu(filteredAllDay);
         // console.log(filteredAllDay, "all-day");
         setMenu(filteredBreakfast);

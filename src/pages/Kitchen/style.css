@@ -1,3 +1,11 @@
+.kitchen-container{
+  display: flex;
+  padding: 2% 0;
+  background-color: var(--bg-seal-brown);
+  width: 100%;
+  min-height: 100vh;
+}
+
 .orders-container{
   display: flex;
   flex-wrap: wrap;

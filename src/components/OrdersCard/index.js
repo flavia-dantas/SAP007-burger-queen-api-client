@@ -3,19 +3,25 @@ import "./style.css";
 export const OrdersCard = ({id, clientName, table, status, createdAt, updatedAt, products, children, preparationTime, processedAt}) => {
   return (
     <li className="orders-card">
-      <p>Nº Pedido: {id}</p>
-      <p>Cliente: {clientName}</p>
-      <p>Mesa: {table}</p>
-      <p>Status: {status}</p>
-      <p>Criado: {createdAt}</p>
-      <p>Última Atualização: {updatedAt}</p>
-      {status !== "done" ?  "" :
+      <div className="orders-status">
+        {status}
+      </div>
+      <p className="orders-info"><span className="orders-info-span">Nº Pedido:</span> {id}</p>
+      <p className="orders-info"><span className="orders-info-span">Cliente:</span> {clientName}</p>
+      <p className="orders-info"><span className="orders-info-span">Mesa:</span> {table}</p>
+      <p className="orders-info"><span className="orders-info-span">Criado em:</span> {createdAt}</p>
+      {status === "pronto" || status === "entregue" ?
       <>
-        <p>Processado: {processedAt}</p>
-        <p>Tempo de Preparo:{preparationTime}</p>
+        <p className="orders-info"><span className="orders-info-span">Preparado em:</span> {preparationTime}</p>
+        <p className="orders-info"><span className="orders-info-span">Finalizado em:</span> {processedAt}</p>
       </>
+      : ""
       }
-      <ul>Produtos: {products}</ul>
+      {status === "entregue" ?
+      <p className="orders-info"><span className="orders-info-span">Entregue em:</span> {updatedAt}</p>
+      : ""
+      }
+      <ul className="orders-info"><span className="orders-info-span">Produtos:</span> {products}</ul>
       {children}
     </li>
   );
