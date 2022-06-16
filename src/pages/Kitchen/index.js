@@ -48,40 +48,42 @@ export const Kitchen = () => {
   return (
     <>
       <Header titlePage="Cozinha" />
-      <ul className="orders-container">
-        {orders.map((item) => {
-          return (
-            <div key={item.id}>
-              <OrdersCard
-              id={item.id}
-              clientName={item.client_name}
-              table={item.table}
+      <section className="kitchen-container">
+        <ul className="orders-container">
+          {orders.map((item) => {
+            return (
+              <div key={item.id}>
+                <OrdersCard
+                id={item.id}
+                clientName={item.client_name}
+                table={item.table}
                 status={statusVerification(item)}
-              createdAt={formatTime(item.createdAt)}
-              processedAt={formatTime(item.processedAt)}
-              preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
-              products={item.Products.map((element) => {
-                return (
-                  <div key={element.id}>
-                    <ProductsOrder
-                    name={element.name}
-                    flavor={element.flavor}
-                    complement={element.complement}
-                    qtd={element.qtd}
-                    />
-                  </div>
-                );
-              })}
-              >
-                {item.status === "pending" ?
-                <Button onClick={(e) => orderStatus(item, e)} value="preparing">
+                createdAt={formatTime(item.createdAt)}
+                processedAt={formatTime(item.processedAt)}
+                preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
+                products={item.Products.map((element) => {
+                  return (
+                    <div key={element.id}>
+                      <ProductsOrder
+                      name={element.name}
+                      flavor={element.flavor}
+                      complement={element.complement}
+                      qtd={element.qtd}
+                      />
+                    </div>
+                  );
+                })}
+                >
+                  {item.status === "pending" ?
+                  <Button onClick={(e) => orderStatus(item, e)} value="preparing">
                     Preparar </Button> : item.status === "preparing" &&
                   <Button onClick={(e) => orderStatus(item, e)} value="ready">Pronto</Button>}
-              </OrdersCard>
-            </div>
-          );
-        })}
-      </ul>
+                </OrdersCard>
+              </div>
+            );
+          })}
+        </ul>
+      </section>
     </>
   );
 };
