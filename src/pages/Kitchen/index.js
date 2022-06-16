@@ -26,14 +26,12 @@ export const Kitchen = () => {
     });
   }, []);
 
-  useEffect(() => {
-  }, [orders]);
-
   const orderStatus = (item, e) => {
     updateOrders(item.id, e.target.value)
     .then((response) => {
+      let copyOrders = orders;
       if (response.status === 200) {
-        const copyOrders = orders.map((copyOrder) => {
+        copyOrders = orders.map((copyOrder) => {
           if (copyOrder.id === item.id ) {
             copyOrder.status = e.target.value;
             copyOrder.updatedAt = new Date();
@@ -41,7 +39,8 @@ export const Kitchen = () => {
           }
           return copyOrder;
         });
-        setOrders(copyOrders);
+        const filterOnChangeStatus = filterData(copyOrders,"pending","preparing");
+        setOrders(filterOnChangeStatus);
       }
     });
   };
@@ -59,7 +58,6 @@ export const Kitchen = () => {
               table={item.table}
                 status={statusVerification(item)}
               createdAt={formatTime(item.createdAt)}
-              updatedAt={formatTime(item.updatedAt)}
               processedAt={formatTime(item.processedAt)}
               preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
               products={item.Products.map((element) => {
