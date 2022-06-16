@@ -10,6 +10,7 @@ import {
   filterData,
   formatTime,
   sortData,
+  statusVerification
 } from "../../helper";
 
 export const Kitchen = () => {
@@ -56,7 +57,7 @@ export const Kitchen = () => {
               id={item.id}
               clientName={item.client_name}
               table={item.table}
-              status={item.status}
+                status={statusVerification(item)}
               createdAt={formatTime(item.createdAt)}
               updatedAt={formatTime(item.updatedAt)}
               processedAt={formatTime(item.processedAt)}
@@ -76,8 +77,8 @@ export const Kitchen = () => {
               >
                 {item.status === "pending" ?
                 <Button onClick={(e) => orderStatus(item, e)} value="preparing">
-                  Preparar</Button> : item.status === "preparing" &&
-                 <Button onClick={(e) => orderStatus(item, e)} value="done">Pronto</Button>}
+                    Preparar </Button> : item.status === "preparing" &&
+                  <Button onClick={(e) => orderStatus(item, e)} value="ready">Pronto</Button>}
               </OrdersCard>
             </div>
           );
