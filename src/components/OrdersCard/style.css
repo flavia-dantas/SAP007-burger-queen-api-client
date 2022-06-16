@@ -3,10 +3,32 @@
 .orders-card {
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: 250px;
   border: 2px solid var(--bg-seal-brown);
   border-radius: 15px;
   gap: 5px;
-  padding: 10px;
+  padding-bottom: 10px;
   margin-bottom: 20px;
+  background-color: var(--bg-antique-white);
+  color: var( --black-bean);
+  font-size: 1rem;
+}
+
+.orders-status{
+  display: flex;
+  background-color: var(--bg-orange);
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px 15px 0 0;
+  padding: 4%;
+  font-weight: bold;
+}
+
+.orders-info{
+  padding: 0 10px;
+}
+
+.orders-info-span{
+  font-weight: bold;
 }
