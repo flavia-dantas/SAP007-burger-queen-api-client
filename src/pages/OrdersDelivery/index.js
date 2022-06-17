@@ -7,7 +7,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import {
   calculationPreparationTime,
-  filterData,
+  filterStatus,
   formatTime,
   sortData,
   statusVerification
@@ -21,8 +21,8 @@ export const OrdersDelivery = () => {
     .then((response) => response.json())
     .then((data) => {
       const sortOrders = sortData(data);
-      const filterStatus = filterData(sortOrders,"ready");
-      setOrders(filterStatus);
+      const filterData = filterStatus(sortOrders,"ready");
+      setOrders(filterData);
     });
   }, []);
 
@@ -39,7 +39,7 @@ export const OrdersDelivery = () => {
           }
           return copyOrder;
         });
-        const filterOnChangeStatus = filterData(copyOrders,"ready");
+        const filterOnChangeStatus = filterStatus(copyOrders,"ready");
         setOrders(filterOnChangeStatus);
       }
     });

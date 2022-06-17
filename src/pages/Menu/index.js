@@ -9,7 +9,7 @@ import { Header } from "../../components/Header";
 import { InputElement } from "../../components/Input";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { CreateOrderError } from "../../services/error";
-import { filterData, hideErrorMessage } from "../../helper";
+import {filterType, hideErrorMessage } from "../../helper";
 import { Modal } from "../../components/Modal";
 
 export const Menu = () => {
@@ -29,12 +29,10 @@ export const Menu = () => {
     getProducts()
       .then((response) => response.json())
       .then((data) => {
-        const filteredBreakfast = filterData(data, "breakfast");
+        const filteredBreakfast = filterType(data, "breakfast");
         setBreakfastMenu(filteredBreakfast);
-        // console.log(filteredBreakfast, "breakfast");
-        const filteredAllDay = filterData(data, "all-day");
+        const filteredAllDay = filterType(data, "all-day");
         setAllDayMenu(filteredAllDay);
-        // console.log(filteredAllDay, "all-day");
         setMenu(filteredBreakfast);
       });
   }, []);
@@ -101,7 +99,6 @@ export const Menu = () => {
         setOrder([]);
         setTable("");
         setClient("");
-        console.log("enviado!");
         return response.json();
       }
       setErrorMessage(CreateOrderError(response));
