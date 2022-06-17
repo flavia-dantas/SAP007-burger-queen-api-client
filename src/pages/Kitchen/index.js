@@ -7,7 +7,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import {
   calculationPreparationTime,
-  filterData,
+  filterStatus,
   formatTime,
   sortData,
   statusVerification
@@ -21,8 +21,8 @@ export const Kitchen = () => {
     .then((response) => response.json())
     .then((data) => {
       const sortDataKitchen = sortData(data);
-      const filterStatus = filterData(sortDataKitchen,"pending","preparing");
-      setOrders(filterStatus);
+      const filterData = filterStatus(sortDataKitchen,"pending","preparing");
+      setOrders(filterData);
     });
   }, []);
 
@@ -39,7 +39,7 @@ export const Kitchen = () => {
           }
           return copyOrder;
         });
-        const filterOnChangeStatus = filterData(copyOrders,"pending","preparing");
+        const filterOnChangeStatus = filterStatus(copyOrders,"pending","preparing");
         setOrders(filterOnChangeStatus);
       }
     });
