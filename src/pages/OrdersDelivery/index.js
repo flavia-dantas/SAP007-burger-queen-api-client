@@ -47,7 +47,7 @@ export const OrdersDelivery = () => {
 
   return (
     <>
-      <Header titlePage="Pedidos para Entrega" />
+      <Header titlePage="Pedidos Prontos" />
       <section className="orders-delivery-container">
         <ul className="orders-container">
           {orders.map((item) => {

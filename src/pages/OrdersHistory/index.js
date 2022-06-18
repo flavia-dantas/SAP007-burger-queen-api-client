@@ -27,7 +27,7 @@ export const OrdersHistory = () => {
 
   return (
     <>
-      <Header titlePage="Histórico dos Pedidos" />
+      <Header titlePage="Histórico" />
       <section className="orders-history-container">
         <ul className="orders-container">
           {orders.map((item) => {
