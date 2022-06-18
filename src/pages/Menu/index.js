@@ -77,9 +77,9 @@ export const Menu = () => {
     return findItem ? findItem.qtd : 0;
   };
 
-  const deleteItem = (teste) => {
+  const deleteItem = (item) => {
     order.splice(
-      order.findIndex((element) => element.id === teste.id),
+      order.findIndex((element) => element.id === item.id),
       1
       );
       setOrder([...order]);
