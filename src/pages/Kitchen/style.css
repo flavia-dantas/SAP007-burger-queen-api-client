@@ -3,7 +3,7 @@
   padding: 2% 0;
   background-color: var(--bg-seal-brown);
   width: 100%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--header-height));
 }
 
 .orders-container{

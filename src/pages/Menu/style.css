@@ -2,7 +2,7 @@
 
 .container-main {
   width: 100%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: row;
 }
@@ -38,7 +38,7 @@
 
 .container-menu{
   width: 100%;
-  height: calc(100vh - 170px);
+  height: calc(100vh - var(--header-height) - 70px);
   overflow: auto;
 }
 
@@ -54,7 +54,7 @@
 
 .order-aside{
   width: 30%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   padding: 0 20px;
