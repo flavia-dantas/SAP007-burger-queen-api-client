@@ -49,6 +49,7 @@ export const Kitchen = () => {
     <>
       <Header titlePage="Cozinha" />
       <section className="kitchen-container">
+      <div className="container-ul">
         <ul className="orders-container">
           {orders.map((item) => {
             return (
@@ -83,6 +84,7 @@ export const Kitchen = () => {
             );
           })}
         </ul>
+        </div>
       </section>
     </>
   );
