@@ -48,7 +48,7 @@ export const OrdersDelivery = () => {
   return (
     <>
       <Header titlePage="Pedidos para Entrega" />
-      <section className="kitchen-container">
+      <section className="orders-delivery-container">
         <ul className="orders-container">
           {orders.map((item) => {
             return (
