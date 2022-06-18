@@ -47,41 +47,43 @@ export const OrdersDelivery = () => {
 
   return (
     <>
-      <Header titlePage="Pedidos para Entrega" />
+      <Header titlePage="Pedidos Prontos" />
       <section className="orders-delivery-container">
-        <ul className="orders-container">
-          {orders.map((item) => {
-            return (
-              <div key={item.id}>
-                <OrdersCard
-                id={item.id}
-                clientName={item.client_name}
-                table={item.table}
-                status={statusVerification(item)}
-                status2={item.status}
-                createdAt={formatTime(item.createdAt)}
-                updatedAt={formatTime(item.updatedAt)}
-                processedAt={formatTime(item.processedAt)}
-                preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
-                products={item.Products.map((element) => {
-                  return (
-                    <div key={element.id}>
-                      <ProductsOrder
-                      name={element.name}
-                      flavor={element.flavor}
-                      complement={element.complement}
-                      qtd={element.qtd}
-                      />
-                    </div>
-                  );
-                })}
-                >
-                  <Button onClick={(e) => orderStatus(item, e)} value="delivered">Entregar</Button>
-                </OrdersCard>
-              </div>
-            );
-          })}
-        </ul>
+        <div className="container-ul">
+          <ul className="orders-container">
+            {orders.map((item) => {
+              return (
+                <div key={item.id}>
+                  <OrdersCard
+                  id={item.id}
+                  clientName={item.client_name}
+                  table={item.table}
+                  status={statusVerification(item)}
+                  status2={item.status}
+                  createdAt={formatTime(item.createdAt)}
+                  updatedAt={formatTime(item.updatedAt)}
+                  processedAt={formatTime(item.processedAt)}
+                  preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
+                  products={item.Products.map((element) => {
+                    return (
+                      <div key={element.id}>
+                        <ProductsOrder
+                        name={element.name}
+                        flavor={element.flavor}
+                        complement={element.complement}
+                        qtd={element.qtd}
+                        />
+                      </div>
+                    );
+                  })}
+                  >
+                    <Button onClick={(e) => orderStatus(item, e)} value="delivered">Entregar</Button>
+                  </OrdersCard>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
       </section>
     </>
   );
