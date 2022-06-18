@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { InputElement } from "../../components/Input";
 import { LoginError } from "../../services/error";
-import { setToken } from "../../services/localStorage";
+import { setRole, setToken } from "../../services/localStorage";
 import { loginUser } from "../../services/auth";
 import { LayoutForm } from "../../components/Layout";
 import { ErrorMessage } from "../../components/ErrorMessage";
@@ -31,6 +31,7 @@ export const Login = () => {
         if(!data) return;
         console.log(data.token);
         setToken(data.token);
+        setRole(data.role);
         navigate(data.role === "saloon" ? "/menu" : "/kitchen");
       })
       .catch(() => setErrorMessage(LoginError({status:500})));
