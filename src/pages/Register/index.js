@@ -7,7 +7,7 @@ import { LayoutForm } from "../../components/Layout";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { createUser } from "../../services/auth";
 import { RegisterError } from "../../services/error";
-import { setToken } from "../../services/localStorage";
+import { setRole, setToken } from "../../services/localStorage";
 import Logo from "../../assets/logo.svg";
 import { hideErrorMessage } from "../../helper";
 
@@ -15,13 +15,13 @@ export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("saloon");
+  const [roleUser, setRoleUser] = useState("saloon");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(name, email, password, role)
+    createUser(name, email, password, roleUser)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -32,6 +32,7 @@ export const Register = () => {
         if(!data) return;
         console.log(data.token);
         setToken(data.token);
+        setRole(data.role);
         navigate("/");
       })
       .catch(() => setErrorMessage(RegisterError({status:500})));
@@ -76,8 +77,8 @@ export const Register = () => {
             label="Atendente"
             value="saloon"
             name="role"
-            checked={role === "saloon"}
-            onChange={(e) => setRole(e.target.value)}
+            checked={roleUser === "saloon"}
+            onChange={(e) => setRoleUser(e.target.value)}
           />
           <InputElement
             type="radio"
@@ -86,8 +87,8 @@ export const Register = () => {
             label="Cozinha"
             value="kitchen"
             name="role"
-            checked={role === "kitchen"}
-            onChange={(e) => setRole(e.target.value)}
+            checked={roleUser === "kitchen"}
+            onChange={(e) => setRoleUser(e.target.value)}
           />
           </div>
           <ErrorMessage

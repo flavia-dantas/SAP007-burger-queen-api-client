@@ -26,13 +26,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   height: 100%;
+  width: 6vw;
+  margin-right: 10px;
+}
+
+.container-button-history-delivery {
+  display: flex;
+  gap: 10px;
 }
 
 .button-header {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin: 10px;
 }
 
+.img-button-header {
+  width: 35px;
+}
