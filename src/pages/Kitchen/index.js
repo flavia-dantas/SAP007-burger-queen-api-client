@@ -10,36 +10,46 @@ import {
   filterStatus,
   formatTime,
   sortData,
-  statusVerification
+  statusVerification,
 } from "../../helper";
+import { useNavigate } from "react-router-dom";
+import { getRole } from "../../services/localStorage";
 
 export const Kitchen = () => {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOrders()
-    .then((response) => response.json())
-    .then((data) => {
-      const sortDataKitchen = sortData(data);
-      const filterData = filterStatus(sortDataKitchen,"pending","preparing");
-      setOrders(filterData);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        const sortDataKitchen = sortData(data);
+        const filterData = filterStatus(
+          sortDataKitchen,
+          "pending",
+          "preparing"
+        );
+        setOrders(filterData);
+      });
   }, []);
 
   const orderStatus = (item, e) => {
-    updateOrders(item.id, e.target.value)
-    .then((response) => {
+    updateOrders(item.id, e.target.value).then((response) => {
       let copyOrders = orders;
       if (response.status === 200) {
         copyOrders = orders.map((copyOrder) => {
-          if (copyOrder.id === item.id ) {
+          if (copyOrder.id === item.id) {
             copyOrder.status = e.target.value;
             copyOrder.updatedAt = new Date();
             copyOrder.processedAt = new Date();
           }
           return copyOrder;
         });
-        const filterOnChangeStatus = filterStatus(copyOrders,"pending","preparing");
+        const filterOnChangeStatus = filterStatus(
+          copyOrders,
+          "pending",
+          "preparing"
+        );
         setOrders(filterOnChangeStatus);
       }
     });
@@ -47,45 +57,67 @@ export const Kitchen = () => {
 
   return (
     <>
-      <Header titlePage="Cozinha" />
-      <section className="kitchen-container">
-      <div className="container-ul">
-        <ul className="orders-container">
-          {orders.map((item) => {
-            return (
-              <div key={item.id}>
-                <OrdersCard
-                id={item.id}
-                clientName={item.client_name}
-                table={item.table}
-                status={statusVerification(item)}
-                createdAt={formatTime(item.createdAt)}
-                processedAt={formatTime(item.processedAt)}
-                preparationTime={calculationPreparationTime(item.processedAt,item.createdAt)}
-                products={item.Products.map((element) => {
+      {getRole() === "kitchen" ? (
+        <>
+          <Header titlePage="Cozinha" />
+          <section className="kitchen-container">
+            <div className="container-ul">
+              <ul className="orders-container">
+                {orders.map((item) => {
                   return (
-                    <div key={element.id}>
-                      <ProductsOrder
-                      name={element.name}
-                      flavor={element.flavor}
-                      complement={element.complement}
-                      qtd={element.qtd}
-                      />
+                    <div key={item.id}>
+                      <OrdersCard
+                        id={item.id}
+                        clientName={item.client_name}
+                        table={item.table}
+                        status={statusVerification(item)}
+                        createdAt={formatTime(item.createdAt)}
+                        processedAt={formatTime(item.processedAt)}
+                        preparationTime={calculationPreparationTime(
+                          item.processedAt,
+                          item.createdAt
+                        )}
+                        products={item.Products.map((element) => {
+                          return (
+                            <div key={element.id}>
+                              <ProductsOrder
+                                name={element.name}
+                                flavor={element.flavor}
+                                complement={element.complement}
+                                qtd={element.qtd}
+                              />
+                            </div>
+                          );
+                        })}
+                      >
+                        {item.status === "pending" ? (
+                          <Button
+                            onClick={(e) => orderStatus(item, e)}
+                            value="preparing"
+                          >
+                            Preparar
+                          </Button>
+                        ) : (
+                          item.status === "preparing" && (
+                            <Button
+                              onClick={(e) => orderStatus(item, e)}
+                              value="ready"
+                            >
+                              Pronto
+                            </Button>
+                          )
+                        )}
+                      </OrdersCard>
                     </div>
                   );
                 })}
-                >
-                  {item.status === "pending" ?
-                  <Button onClick={(e) => orderStatus(item, e)} value="preparing">
-                    Preparar </Button> : item.status === "preparing" &&
-                  <Button onClick={(e) => orderStatus(item, e)} value="ready">Pronto</Button>}
-                </OrdersCard>
-              </div>
-            );
-          })}
-        </ul>
-        </div>
-      </section>
+              </ul>
+            </div>
+          </section>
+        </>
+      ) : (
+        navigate("/menu")
+      )}
     </>
   );
 };
