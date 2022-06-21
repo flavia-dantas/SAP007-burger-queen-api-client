@@ -15,7 +15,7 @@
 
 ## 1. Introdução
 
-**The Lord of the Burgers** é uma pequena hamburgueria que está crescendo e para otimizar o atendimento foi desenvolvido uma inteface para realizar os pedidos.
+**The Lord of the Burgers** é uma pequena hamburgueria que está crescendo e para otimizar o atendimento foi desenvolvido uma interface para realizar os pedidos.
 
 Você pode acessar a aplicação [AQUI](https://thelordoftheburgers.netlify.app/).
 
