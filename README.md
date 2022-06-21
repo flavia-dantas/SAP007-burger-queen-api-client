@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# The Lord of the Burgers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Índice
 
-## Available Scripts
+  - [Índice](#índice)
+  - [1. Introdução](#1-introdução)
+  - [2. Resumo do Projeto](#2-resumo-do-projeto)
+  - [3. Metodologia Ágil](#3-metodologia-ágil)
+  - [4. Protótipo](#4-protótipo)
+  - [5. Histórias de Usuário](#5-histórias-de-usuário)
+  - [6. Tecnologias Utilizadas](#6-tecnologias-utilizadas)
+  - [7. Como usar](#7-como-usar)
+  - [8. Desenvolvedoras](#8-desenvolvedoras)
+***
 
-In the project directory, you can run:
+## 1. Introdução
 
-### `npm start`
+**The Lord of the Burgers** é uma pequena hamburgueria que está crescendo e para otimizar o atendimento foi desenvolvido uma inteface para realizar os pedidos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Você pode acessar a aplicação [AQUI](https://thelordoftheburgers.netlify.app/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para acessar, você pode utilizar o usuário e senha abaixo:
 
-### `npm test`
+> | Usuário                 | Senha  |
+> | ---------------------- | ------ |
+> | atendente@burger.com  | 123456 |
+> | cozinha@burger.com   | 123456 |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![The Lord of the Burgers](./src/assets/img/Burguer-Queen1.png)
+## 2. Resumo do projeto
 
-### `npm run build`
+Foi desenvolvido para o **The Lord of the Burgers** uma interface em que se possa realizar pedidos utilizando um _tablet_, e enviá-los
+para a cozinha para que sejam preparados de forma ordenada e eficiente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Este projeto tem duas áreas: interface (cliente) e API (servidor). Nosso cliente nos pediu para desenvolver uma interface que se integre com a API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Estas são as informações que temos do cliente:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> Somos **The Lord of the Burgers**, um fast food 24hrs.
+>
+>A nossa proposta de serviço 24 horas foi muito bem recebida e, para continuar a
+>crescer, precisamos de um sistema que nos ajude a receber pedidos de nossos
+>clientes.
+>
+>Nós temos 2 menus. Um muito simples para o café da manhã:
+>
+>| Ítem                      |Preço R$|
+>|---------------------------|------|
+>| Café americano            |    5 |
+>| Café com leite            |    7 |
+>| Sanduíche de presunto e queijo|   10 |
+>| Suco de fruta natural     |    7 |
+>
+>E outro menu para o resto do dia:
+>
+>| Ítem                      |Preço |
+>|---------------------------|------|
+>|**Hambúrgueres**           |   **R$**   |
+>|Hambúrguer simples         |    10|
+>|Hambúrguer duplo           |    15|
+>|**Acompanhamentos**        |   **R$**   |
+>|Batata frita               |     5|
+>|Anéis de cebola            |     5|
+>|**Bebidas**                |   **R$**   |
+>|Água 500ml                 |     5|
+>|Água 750ml                 |     7|
+>|Bebida gaseificada 500ml   |     7|
+>|Bebida gaseificada 750ml   |    10|
+>
+> **Importante:** Os clientes podem escolher entre hambúrgueres de carne bovina,
+> frango ou vegetariano. Além disso, por um adicional de R\$ 1,00 , eles podem
+> adicionar queijo **ou** ovo.
+>
+>Nossos clientes são bastante indecisos, por isso é muito comum que eles mudem o
+>seu pedido várias vezes antes de finalizar.
 
-### `npm run eject`
+A interface mostra os dois menus (café da manhã e restante do dia), cada
+um com todos os seus _produtos_. O usuário deve poder escolher que _produtos_
+adicionar e a interface deve mostrar o _resumo do pedido_ com o custo total.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 3. Metodologia Ágil
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Utilizamos o Trello para nos organizarmos durante as Sprints do projeto. Com a criação do Backlog com as histórias de usuário, e a divisão das atividade a serem desenvolvidas, geradas a partir do Backlog.
+Assim como as cerimonias da metodologia ágil: Daily, Sprint Planning, Sprint Review, Sprint Retrospective, e Sprint Checkout.
+## 4. Protótipo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para criação dos Protótipos desenvolvido na ferramenta Figma.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Protótipo-alta-fidelidade](./src/assets/img/prototipo-alta-fidelidade1.png)
+![Protótipo-alta-fidelidade](./src/assets/img/prototipo-alta-fidelidade2.png)
 
-## Learn More
+### 4.1 Paleta de Cores
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![paleta-de-cores](./src/assets/img/paleta-de-cores.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 5. Histórias de Usuário
 
-### Code Splitting
+![históaria-de-usuario1](./src/assets/img/historia-usuario1.png)
+![históaria-de-usuario2](./src/assets/img/historia-usuario2.png)
+![históaria-de-usuario3](./src/assets/img/historia-usuario3.png)
+![históaria-de-usuario4](./src/assets/img/historia-usuario4.png)
+## 6. Tecnologias Utilizadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **HTML**;
+- **CSS**;
+- **ReactJS**;
+- **Trello**;
+- **Figma**;
+- **NodeJS**;
+- **Git e GitHub**;
+- **Netlify**;
 
-### Analyzing the Bundle Size
+## 7. Como usar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Você precisará usar o Node.js
 
-### Making a Progressive Web App
+Clonar o projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+` $ git clone https://github.com/flavia-dantas/burger-queen-api-client.git`
 
-### Advanced Configuration
+Instalar as dependências do projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+` $ npm install or yarn`
 
-### Deployment
+Iniciar a aplicação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+` $ npm start or yarn start`
 
-### `npm run build` fails to minify
+Realizar os testes unitários
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+` $ npm test or yarn test`
+
+Criar o aplicativo para produção
+
+` $ npm run build or yarn build`
+
+---
+## 8. Desenvolvedoras
+<table>
+  <tr>
+    <td>
+      <img src="./src/assets/img/flavia-almeida.jpg" height="150px" alt="foto-flavia-almeida">
+      <p align="center">
+        <a href="https://www.linkedin.com/in/flavia-dantas" _blank>Flávia Almeida</a>
+      </p>
+    </td>
+    <td>
+      <img src="./src/assets/img/ludmila-magalhães.png" height="150px" alt="foto-ludmila-magalhães">
+      <p align="center">
+        <a href="https://www.linkedin.com/in/ludmila-magalhaes" _blank>Ludmila Magalhães</a>
+      </p>
+    </td>
+  </tr>
+</table
