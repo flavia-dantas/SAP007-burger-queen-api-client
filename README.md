@@ -23,8 +23,8 @@ Para acessar, você pode utilizar o usuário e senha abaixo:
 
 > | Usuário                 | Senha  |
 > | ---------------------- | ------ |
-> | atendente@burger.com  | 123456 |
-> | cozinha@burger.com   | 123456 |
+> | atendente@burgers.com  | 123456 |
+> | cozinha@burgers.com   | 123456 |
 
 ![The Lord of the Burgers](./src/assets/img/Burguer-Queen1.png)
 ## 2. Resumo do projeto
